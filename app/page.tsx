@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { formatPrice, imagePath, isPurchasable, marketplaceRows, productImageFallback, type Product, type StyleTokens } from "../lib/catalog";
+import { displayLabel, formatPrice, imagePath, isPurchasable, localImagePath, marketplaceRows, productImageFallback, type Product, type StyleTokens } from "../lib/catalog";
 import { movementConfiguration, wrapTickerPosition } from "../lib/movement.mjs";
 
 const rows = marketplaceRows.map((row) => row.products);
@@ -20,7 +20,18 @@ function styleVariables(tokens: StyleTokens) {
     "--row-fg": tokens.color_foreground, "--row-accent": tokens.color_accent,
     "--row-font": tokens.font_heading, "--row-radius": `${tokens.card_radius_px ?? 0}px`,
     "--row-rotunda": tokens.rotunda_surface, "--row-align": tokens.header_alignment,
+    "--row-body-font": tokens.font_body, "--row-heading-size": tokens.heading_size,
+    "--row-heading-weight": tokens.heading_weight, "--row-heading-tracking": tokens.heading_tracking,
+    "--row-border": tokens.border_style, "--row-decoration": tokens.decoration,
   } as React.CSSProperties;
+}
+
+function ProductImage({ product, alt, loading }: { product: Product; alt: string; loading?: "eager" | "lazy" }) {
+  return <img src={imagePath(product)} alt={alt} loading={loading} draggable={false} data-fallback="local" onError={(event) => {
+    const image = event.currentTarget;
+    if (image.dataset.fallback === "local") { image.dataset.fallback = "final"; image.src = localImagePath(product); }
+    else if (image.dataset.fallback === "final") { image.dataset.fallback = "done"; image.src = productImageFallback(); }
+  }} />;
 }
 
 export default function Home() {
@@ -299,7 +310,7 @@ export default function Home() {
             onPointerUp={(event) => endDrag(event, rowIndex)}
             onPointerCancel={(event) => endDrag(event, rowIndex)}
           >
-            <div className="row-heading"><span>{marketplaceRows[rowIndex].title}</span><em>{marketplaceRows[rowIndex].storefront_id.replace("storefront_", "")}</em></div>
+            <div className="row-heading"><span>{marketplaceRows[rowIndex].title}<small>{marketplaceRows[rowIndex].subtitle}</small></span><em>{marketplaceRows[rowIndex].title}</em></div>
             <div className="row-controls" aria-label={`Move row ${rowIndex + 1}`}>
               <button onClick={() => nudgeRow(rowIndex, -1)} aria-label={`Move row ${rowIndex + 1} left`}>←</button>
               <span>{String(rowIndex + 1).padStart(2, "0")}</span>
@@ -326,7 +337,7 @@ export default function Home() {
                       draggable={false}
                       data-product-id={work.product_id}
                     >
-                      <img src={imagePath(work)} alt={copyIndex === 2 ? work.media[0].alt : ""} onError={(event) => { if (event.currentTarget.src !== productImageFallback()) event.currentTarget.src = productImageFallback(); }} loading={rowIndex > 1 ? "lazy" : "eager"} draggable={false} />
+                      <ProductImage product={work} alt={copyIndex === 2 ? work.media[0].alt : ""} loading={rowIndex > 1 ? "lazy" : "eager"} />
                       <span className="tile-meta"><b>{work.title}</b><em>{formatPrice(work.variants[0].retail_price.amount_minor, work.variants[0].retail_price.currency)}</em></span>
                     </button>
                   ))}
@@ -380,7 +391,7 @@ export default function Home() {
           <div className="family-rail" aria-label={`${marketplaceRows[selectedRow].title} collection`}>
             {family.slice(0, 2).map((work, index) => (
               <button className={`family-card family-left family-${index}`} key={work.product_id} onClick={() => setSelected(work)}>
-                <img src={imagePath(work)} alt={work.media[0].alt} onError={(event) => { event.currentTarget.src = productImageFallback(); }} />
+                <ProductImage product={work} alt={work.media[0].alt} />
               </button>
             ))}
           </div>
@@ -395,21 +406,21 @@ export default function Home() {
               <span>{previousMove.label === "Ascend" ? "↖" : "←"}</span><em>{previousMove.label}</em>
             </button>
             <button className="hero" onClick={advance} aria-label={stage === 1 ? `Preview website for ${selected.title}` : `Visit website for ${selected.title}`}>
-              <img src={imagePath(selected)} alt={selected.media[0].alt} onError={(event) => { event.currentTarget.src = productImageFallback(); }} />
+              <ProductImage product={selected} alt={selected.media[0].alt} />
               <span className="hero-index">{String(rows[selectedRow].findIndex((p) => p.product_id === selected.product_id) + 1).padStart(2, "0")}</span>
               <span className="hero-action">{stage === 1 ? "Product details" : "Catalog details"} <i>↗</i></span>
             </button>
 
             <div className="work-copy">
-              <p>{marketplaceRows[selectedRow].title} / {selected.storefront_id.replace("storefront_", "")}</p>
+              <p>{marketplaceRows[selectedRow].title}</p>
               <h1>{selected.title}</h1>
-              <span>{formatPrice(selected.variants[0].retail_price.amount_minor, selected.variants[0].retail_price.currency)} · {selected.variants[0].availability.status.replace("_", " ")}</span>
+              <span>{formatPrice(selected.variants[0].retail_price.amount_minor, selected.variants[0].retail_price.currency)} · {displayLabel(selected.variants[0].availability.status)}</span>
             </div>
 
             {stage === 2 && (
               <div className="site-preview">
                 <div className="preview-bar">
-                  <span>{selected.product_id}.nume</span>
+                  <span>NUME Product Preview</span>
                   <i>•••</i>
                 </div>
                 <div className="preview-page">
@@ -433,7 +444,7 @@ export default function Home() {
           <div className="family-rail family-rail-right">
             {family.slice(2, 4).map((work, index) => (
               <button className={`family-card family-right family-${index}`} key={work.product_id} onClick={() => setSelected(work)}>
-                <img src={imagePath(work)} alt={work.media[0].alt} onError={(event) => { event.currentTarget.src = productImageFallback(); }} />
+                <ProductImage product={work} alt={work.media[0].alt} />
               </button>
             ))}
           </div>
@@ -449,10 +460,10 @@ export default function Home() {
         >
           <div className="mobile-rotunda-meta">
             <div>
-              <p>{marketplaceRows[selectedRow].title} / {selected.storefront_id.replace("storefront_", "")}</p>
+              <p>{marketplaceRows[selectedRow].title}</p>
               <h1>{selected.title}</h1>
             </div>
-            <span>{formatPrice(selected.variants[0].retail_price.amount_minor, selected.variants[0].retail_price.currency)} · {selected.variants[0].availability.status.replace("_", " ")}</span>
+            <span>{formatPrice(selected.variants[0].retail_price.amount_minor, selected.variants[0].retail_price.currency)} · {displayLabel(selected.variants[0].availability.status)}</span>
           </div>
 
           <div className={`mobile-rotunda-stage ${selectedRow % 2 ? "preview-left" : "preview-right"}`}>
@@ -461,7 +472,7 @@ export default function Home() {
               onClick={advance}
               aria-label={stage === 1 ? `Preview website for ${selected.title}` : `Visit website for ${selected.title}`}
             >
-              <img src={imagePath(selected)} alt={selected.media[0].alt} onError={(event) => { event.currentTarget.src = productImageFallback(); }} />
+              <ProductImage product={selected} alt={selected.media[0].alt} />
               <span className="mobile-hero-index">{String(rows[selectedRow].findIndex((p) => p.product_id === selected.product_id) + 1).padStart(2, "0")}</span>
               <span className="mobile-hero-action">{stage === 1 ? "Product details" : "Catalog details"} <i>↗</i></span>
             </button>
@@ -469,7 +480,7 @@ export default function Home() {
             {stage === 2 && (
               <div className="mobile-site-preview">
                 <div className="preview-bar">
-                  <span>{selected.product_id}.nume</span>
+                  <span>NUME Product Preview</span>
                   <i>•••</i>
                 </div>
                 <div className="preview-page">

@@ -6,7 +6,7 @@ import { resolveAssetPath } from "./asset-path.mjs";
 
 export type Availability = "available" | "low_stock" | "sold_out" | "temporarily_unavailable" | "discontinued" | "preorder" | "unknown" | "mapping_error" | "suspended";
 export type Product = (typeof catalogData.products)[number];
-export type StyleTokens = Partial<{ color_background: string; color_surface: string; color_foreground: string; color_accent: string; font_heading: string; header_alignment: string; card_radius_px: number; rotunda_surface: string }>;
+export type StyleTokens = Partial<{ color_background: string; color_surface: string; color_foreground: string; color_accent: string; font_heading: string; font_body: string; heading_size: string; heading_weight: number; heading_tracking: string; border_style: string; decoration: string; header_alignment: string; card_radius_px: number; rotunda_surface: string }>;
 export type MarketplaceRow = (typeof layoutData.rows)[number] & { products: Product[]; tokens: StyleTokens };
 
 const productById = new Map(catalogData.products.map((product) => [product.product_id, product]));
@@ -28,9 +28,16 @@ export const marketplaceRows: MarketplaceRow[] = layoutData.rows
 export function imagePath(product: Product) {
   const media = product.media[0];
   if (!media) return resolveAssetPath(null);
-  if (media.object_key) return resolveAssetPath(media.object_key);
-  const url = new URL(media.url);
-  return url.hostname === "numenume.com" ? resolveAssetPath(url.pathname) : media.url;
+  return media.url || localImagePath(product);
+}
+
+export function localImagePath(product: Product) {
+  return resolveAssetPath(product.media[0]?.object_key ?? null);
+}
+
+/** Defensive presentation fallback; curated display names should always take precedence. */
+export function displayLabel(value: string) {
+  return value.replace(/\.[a-z0-9]+$/i, "").replace(/[_-]+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
 export { productImageFallback, resolveAssetPath } from "./asset-path.mjs";

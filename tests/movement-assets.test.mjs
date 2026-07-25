@@ -36,21 +36,22 @@ test("asset resolver supports roots, GitHub Pages, remote URLs, and fallbacks", 
   assert.equal(productImageFallback("/NUmE-platform"), "/NUmE-platform/products/fallback.svg");
 });
 
-test("all 50 products resolve local raster imagery with descriptive alt text", async () => {
+test("all 50 products prefer remote imagery while resolving local raster fallbacks", async () => {
   assert.equal(catalog.products.length, 50);
   for (const product of catalog.products) {
     const media = product.media[0];
     assert.match(media.object_key, /^products\/(?:emadoku|numenume|qa)\/.+\.webp$/);
-    assert.doesNotMatch(media.url, /\.svg(?:$|\?)/);
-    assert.ok(media.alt.length > 35 && /rendering/i.test(media.alt));
+    assert.match(media.url, /^https:\/\/images\.unsplash\.com\/photo-/);
+    assert.ok(media.alt.length > 35);
     await access(new URL(`../public/${media.object_key}`, import.meta.url));
   }
 });
 
-test("every local image has a complete attribution record", async () => {
+test("every remote image and local fallback has a complete source record", async () => {
   const sources = await readFile(new URL("../docs/catalog/product-image-sources.md", import.meta.url), "utf8");
   for (const product of catalog.products) {
-    assert.match(sources, new RegExp(product.product_id));
+    assert.match(sources, new RegExp(product.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.match(sources, new RegExp(product.media[0].url.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
     assert.match(sources, new RegExp(product.media[0].object_key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
 });
