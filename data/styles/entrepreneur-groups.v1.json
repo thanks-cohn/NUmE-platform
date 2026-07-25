@@ -2,12 +2,15 @@
   "schema_version": "1.0.0",
   "groups": [{
     "entrepreneur_group_id": "group_numenume",
-    "display_name": "NUME / NUMENUMe",
+    "display_name": "NUME Professional Catalog",
     "style_profile_id": "style_group_numenume",
     "tokens": {
-      "color_background": "#e8e3da", "color_surface": "#f6f2e9", "color_foreground": "#111111",
-      "color_accent": "#5f6865", "font_heading": "Helvetica Neue", "header_alignment": "left",
-      "card_radius_px": 3, "rotunda_surface": "rgba(232,227,218,.94)"
+      "color_background": "#e9e5de", "color_surface": "#faf8f3", "color_foreground": "#171717",
+      "color_accent": "#5f6865", "font_heading": "Georgia, 'Times New Roman', serif",
+      "font_body": "'Helvetica Neue', Arial, sans-serif", "heading_size": "clamp(19px, 2.2vw, 34px)",
+      "heading_weight": 500, "heading_tracking": "-.025em", "border_style": "1px solid rgba(23,23,23,.18)",
+      "decoration": "editorial", "header_alignment": "left", "card_radius_px": 4,
+      "rotunda_surface": "rgba(233,229,222,.97)"
     }
   }]
 }

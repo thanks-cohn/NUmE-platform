@@ -20,7 +20,7 @@
       "row_id": "row_emadoku",
       "storefront_id": "storefront_emadoku",
       "entrepreneur_group_id": null,
-      "title": "Emadoku Atelier",
+      "title": "Emadoku Collection",
       "position": 1,
       "style_profile_id": "style_emadoku",
       "product_ids": [
@@ -34,7 +34,8 @@
         "product_emadoku_08",
         "product_emadoku_09",
         "product_emadoku_10"
-      ]
+      ],
+      "subtitle": "Manga, streetwear and print culture"
     },
     {
       "row_id": "row_nume_apparel",
@@ -54,7 +55,8 @@
         "product_nume_apparel_08",
         "product_nume_apparel_09",
         "product_nume_apparel_10"
-      ]
+      ],
+      "subtitle": "Editorial clothing for considered work"
     },
     {
       "row_id": "row_nume_objects",
@@ -74,7 +76,8 @@
         "product_nume_objects_08",
         "product_nume_objects_09",
         "product_nume_objects_10"
-      ]
+      ],
+      "subtitle": "Refined tools for studio and home"
     },
     {
       "row_id": "row_nume_editions",
@@ -94,13 +97,14 @@
         "product_nume_editions_08",
         "product_nume_editions_09",
         "product_nume_editions_10"
-      ]
+      ],
+      "subtitle": "Independent books and printed matter"
     },
     {
       "row_id": "row_qa",
       "storefront_id": "storefront_qa",
       "entrepreneur_group_id": null,
-      "title": "Q&A Supply",
+      "title": "Q&A Fashion",
       "position": 5,
       "style_profile_id": "style_qa",
       "product_ids": [
@@ -114,7 +118,8 @@
         "product_qa_08",
         "product_qa_09",
         "product_qa_10"
-      ]
+      ],
+      "subtitle": "Pink neon, playful glamour and joyful style"
     }
   ]
 }
