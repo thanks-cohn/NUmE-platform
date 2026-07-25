@@ -1,0 +1,16 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import test from "node:test";
+const read = async (path) => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url)));
+const catalog = await read("data/catalogs/nume-marketplace.v1.json");
+const layout = await read("data/layout/marketplace-layout.v1.json");
+const groups = await read("data/styles/entrepreneur-groups.v1.json");
+const styles = await read("data/styles/row-styles.v1.json");
+const products = new Map(catalog.products.map((p) => [p.product_id, p]));
+test("renders five rows of ten catalog references", () => { assert.equal(layout.rows.length, 5); assert.deepEqual(layout.rows.map((r) => r.product_ids.length), [10,10,10,10,10]); });
+test("NUME grouping owns thirty products while storefronts remain separate", () => { const nume = layout.rows.filter((r) => r.entrepreneur_group_id === "group_numenume"); assert.equal(nume.flatMap((r) => r.product_ids).length, 30); assert.equal(layout.rows[0].storefront_id, "storefront_emadoku"); assert.equal(layout.rows[4].storefront_id, "storefront_qa"); });
+test("all row references and storefront ownership resolve", () => { for (const row of layout.rows) for (const id of row.product_ids) assert.equal(products.get(id)?.storefront_id, row.storefront_id); });
+test("group inheritance and row overrides are declaratively isolated", () => { assert.ok(groups.groups.find((g) => g.entrepreneur_group_id === "group_numenume")); assert.equal(layout.rows.filter((r) => r.entrepreneur_group_id === "group_numenume").length, 3); assert.equal(styles.profiles.find((s) => s.style_profile_id === "style_nume_objects").tokens.color_accent, "#c9b57f"); });
+test("Stripe and provider mappings survive in every product", () => { for (const product of catalog.products) { assert.ok(product.external_references.some((r) => r.system === "stripe_product")); for (const variant of product.variants) { assert.ok(variant.external_references.some((r) => r.system === "stripe_price")); assert.ok(variant.fulfillment.provider_product_id); } } });
+test("catalog demonstrates sold out and minor-unit prices", () => { const variants=catalog.products.flatMap((p)=>p.variants); assert.ok(variants.some((v)=>v.availability.status === "sold_out")); assert.ok(variants.every((v)=>Number.isInteger(v.retail_price.amount_minor))); });
+test("renderer retains selection, navigation, style isolation, and reduced motion", async () => { const [page,css]=await Promise.all([readFile(new URL("../app/page.tsx",import.meta.url),"utf8"),readFile(new URL("../app/globals.css",import.meta.url),"utf8")]); assert.match(page,/openWork\(work, rowIndex\)/); assert.match(page,/label: "Previous"/); assert.match(page,/label: "Descend"/); assert.match(page,/data-nume-row/); assert.match(css,/@media \(prefers-reduced-motion: reduce\)/); assert.match(css,/availability-sold_out/); });

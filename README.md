@@ -234,3 +234,41 @@ Current Sites deployment:
 https://nume-gallery.officialmahasbiz.chatgpt.site
 
 Before deploying or publishing a change, run the production build and quality checks described above. Never commit credentials, `.env` secrets, API keys, or payment-provider secrets.
+## Five-row marketplace demonstration
+
+The gallery is now a catalog-driven marketplace demonstration with exactly five visible rows: **Emadoku** (10 products), three consecutive **NUME / NUMENUMe** rows (Apparel, Objects, and Editions; 30 products), and **Q&A** (10 products). It retains the infinite alternating tickers, drag and touch controls, keyboard operation, living background, responsive rotunda, cross-row Ascend/Descend navigation, safe-area layout, scroll locking, and reduced-motion protections.
+
+This milestone contains demonstration records only. It makes **no live payment or fulfillment request**, contains no secrets, and does not create Checkout Sessions.
+
+### Data ownership
+
+- `data/catalogs/nume-marketplace.v1.json` is the canonical product-facts layer: stable IDs, descriptions, media, integer-minor-unit prices, availability, variants, external references, and fulfillment mappings.
+- `data/layout/marketplace-layout.v1.json` independently assigns stable product IDs to storefront rows.
+- `data/styles/entrepreneur-groups.v1.json` defines the shared NUME identity inherited by all three middle rows.
+- `data/styles/row-styles.v1.json` defines bounded Emadoku and Q&A identities and safe row-specific NUME accents. Resolution is platform defaults → group → row → platform accessibility/responsive safeguards; raw merchant CSS is never injected.
+- `lib/catalog.ts` is the typed loader and exposes resolved rows, safe style tokens, availability checks, image paths, and minor-unit price formatting.
+
+### Editing the marketplace
+
+1. Add a schema-conforming product and stable variant to the catalog. Include nonempty media alt text, tags, timestamps, availability, retail money, Stripe placeholder references, and a provider-neutral fulfillment mapping.
+2. Add its `product_id` to exactly one layout row's `product_ids` list. Product facts must never be copied into layout or React.
+3. To add an entrepreneur grouping, add its declarative group profile and reference its stable ID from the relevant rows. A row may reference a row profile containing only allowlisted overrides.
+4. Mark a product sold out by setting its variant `availability.status` to `sold_out`, quantity to `0` when known, and `active` to `false`. The product keeps its position and renders a non-purchasable state.
+5. Run `npm run validate:catalog`. Structural errors fail the production build with product or row context.
+
+Stripe Product and Price placeholders live only in `external_references`; connected-account placeholders use `account_id`. The NUME product and variant IDs remain stable when Stripe IDs change. Displayed HTML prices come from integer catalog amounts, but a future server checkout endpoint **must retrieve and validate the current Stripe Price and availability before creating Checkout**.
+
+Printify, Printful, and manual provider identities are registered in `providers`. Variant `fulfillment` records map provider, product, variant, SKU, shipping, and optional production cost; namespaced extensions hold provider-specific details. Generic UI components do not inspect provider-specific fields.
+
+Original, locally stored demonstration imagery and a per-product provenance record are documented in `docs/catalog/product-image-sources.md`.
+
+### Run and verify
+
+```bash
+npm run install:ci
+npm run validate:catalog
+npm run lint
+npx tsc --noEmit
+npm test
+npm run build
+```

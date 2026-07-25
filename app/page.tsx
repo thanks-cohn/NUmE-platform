@@ -2,37 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type Work = {
-  id: number;
-  title: string;
-  family: string;
-  year: string;
-  image: string;
-  link: string;
-};
+import { formatPrice, imagePath, isPurchasable, marketplaceRows, type Product, type StyleTokens } from "../lib/catalog";
 
-const works: Work[] = [
-  { id: 1, title: "Salt Horizon", family: "Coast", year: "2026", image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 2, title: "Chrome Study", family: "Object", year: "2025", image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 3, title: "Still Water", family: "Coast", year: "2026", image: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 4, title: "Afterimage", family: "Light", year: "2024", image: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 5, title: "Soft Geometry", family: "Structure", year: "2025", image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 6, title: "Blue Interval", family: "Light", year: "2024", image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 7, title: "Field Notes", family: "Earth", year: "2026", image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 8, title: "Quiet Form", family: "Object", year: "2025", image: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 9, title: "Red Passage", family: "Structure", year: "2024", image: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 10, title: "Low Sun", family: "Coast", year: "2026", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 11, title: "Concrete Air", family: "Structure", year: "2025", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 12, title: "Night Bloom", family: "Earth", year: "2024", image: "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 13, title: "Glass House", family: "Structure", year: "2026", image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 14, title: "Pale Distance", family: "Coast", year: "2025", image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 15, title: "Open Volume", family: "Object", year: "2024", image: "https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 16, title: "Amber Room", family: "Light", year: "2026", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 17, title: "Stone Memory", family: "Earth", year: "2025", image: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-  { id: 18, title: "Last Blue", family: "Light", year: "2024", image: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=85", link: "https://unsplash.com" },
-];
-
-const rows = [works.slice(0, 5), works.slice(5, 10), works.slice(10, 14), works.slice(14)];
+const rows = marketplaceRows.map((row) => row.products);
 const ROW_COPIES = 5;
 
 type TickerState = {
@@ -41,8 +13,17 @@ type TickerState = {
   initialized: boolean;
 };
 
+function styleVariables(tokens: StyleTokens) {
+  return {
+    "--row-bg": tokens.color_background, "--row-surface": tokens.color_surface,
+    "--row-fg": tokens.color_foreground, "--row-accent": tokens.color_accent,
+    "--row-font": tokens.font_heading, "--row-radius": `${tokens.card_radius_px ?? 0}px`,
+    "--row-rotunda": tokens.rotunda_surface, "--row-align": tokens.header_alignment,
+  } as React.CSSProperties;
+}
+
 export default function Home() {
-  const [selected, setSelected] = useState<Work | null>(null);
+  const [selected, setSelected] = useState<Product | null>(null);
   const [selectedRow, setSelectedRow] = useState(0);
   const [stage, setStage] = useState<0 | 1 | 2>(0);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
@@ -64,8 +45,8 @@ export default function Home() {
   const rotundaOpen = stage > 0;
 
   const family = useMemo(
-    () => selected ? works.filter((work) => work.family === selected.family && work.id !== selected.id).slice(0, 4) : [],
-    [selected],
+    () => selected ? rows[selectedRow].filter((product) => product.product_id !== selected.product_id).slice(0, 4) : [],
+    [selected, selectedRow],
   );
 
   useEffect(() => {
@@ -172,7 +153,7 @@ export default function Home() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  function openWork(work: Work, rowIndex: number) {
+  function openWork(work: Product, rowIndex: number) {
     if (performance.now() < suppressOpenUntil.current) return;
     setSelected(work);
     setSelectedRow(rowIndex);
@@ -190,7 +171,7 @@ export default function Home() {
   function advance() {
     if (!selected) return;
     if (stage === 1) setStage(2);
-    else window.open(selected.link, "_blank", "noopener,noreferrer");
+    else window.open("#", "_self");
   }
 
   function nudgeRow(rowIndex: number, direction: -1 | 1) {
@@ -261,8 +242,8 @@ export default function Home() {
   function getRotundaMove(direction: -1 | 1) {
     if (!selected) return { target: null, label: direction < 0 ? "Previous" : "Next" };
 
-    const rowIndex = rows.findIndex((row) => row.some((work) => work.id === selected.id));
-    const itemIndex = rows[rowIndex]?.findIndex((work) => work.id === selected.id) ?? -1;
+    const rowIndex = rows.findIndex((row) => row.some((work) => work.product_id === selected.product_id));
+    const itemIndex = rows[rowIndex]?.findIndex((work) => work.product_id === selected.product_id) ?? -1;
     if (rowIndex < 0 || itemIndex < 0) return { target: null, label: direction < 0 ? "Previous" : "Next" };
 
     if (direction < 0) {
@@ -282,7 +263,7 @@ export default function Home() {
     const move = getRotundaMove(direction);
     if (move.target) {
       setSelected(move.target);
-      setSelectedRow(rows.findIndex((row) => row.some((work) => work.id === move.target?.id)));
+      setSelectedRow(rows.findIndex((row) => row.some((work) => work.product_id === move.target?.product_id)));
     }
   }
 
@@ -308,7 +289,11 @@ export default function Home() {
         {rows.map((row, rowIndex) => (
           <div
             className={`gallery-row row-${rowIndex + 1} ${rowIndex < selectedRow ? "row-before" : rowIndex > selectedRow ? "row-after" : "row-selected"}`}
-            key={rowIndex}
+            key={marketplaceRows[rowIndex].row_id}
+            data-nume-row={marketplaceRows[rowIndex].row_id}
+            data-nume-entrepreneur={marketplaceRows[rowIndex].entrepreneur_group_id ?? undefined}
+            data-nume-style={marketplaceRows[rowIndex].style_profile_id}
+            style={styleVariables(marketplaceRows[rowIndex].tokens)}
             onPointerEnter={() => setHoveredRow(rowIndex)}
             onPointerLeave={() => setHoveredRow((current) => current === rowIndex ? null : current)}
             onFocusCapture={() => setHoveredRow(rowIndex)}
@@ -317,6 +302,7 @@ export default function Home() {
             onPointerUp={(event) => endDrag(event, rowIndex)}
             onPointerCancel={(event) => endDrag(event, rowIndex)}
           >
+            <div className="row-heading"><span>{marketplaceRows[rowIndex].title}</span><em>{marketplaceRows[rowIndex].storefront_id.replace("storefront_", "")}</em></div>
             <div className="row-controls" aria-label={`Move row ${rowIndex + 1}`}>
               <button onClick={() => nudgeRow(rowIndex, -1)} aria-label={`Move row ${rowIndex + 1} left`}>←</button>
               <span>{String(rowIndex + 1).padStart(2, "0")}</span>
@@ -335,15 +321,16 @@ export default function Home() {
                 >
                   {row.map((work, itemIndex) => (
                     <button
-                      className={`tile tile-${itemIndex}`}
-                      key={`${work.id}-${copyIndex}`}
+                      className={`tile tile-${itemIndex} availability-${work.variants[0].availability.status}`}
+                      key={`${work.product_id}-${copyIndex}`}
                       onClick={() => openWork(work, rowIndex)}
-                      aria-label={`Open ${work.title}`}
+                      aria-label={`Open ${work.title}${isPurchasable(work) ? "" : ` — ${work.variants[0].availability.status.replace("_", " ")}`}`}
                       tabIndex={copyIndex === 2 ? 0 : -1}
                       draggable={false}
+                      data-product-id={work.product_id}
                     >
-                      <img src={work.image} alt="" loading={rowIndex > 1 ? "lazy" : "eager"} draggable={false} />
-                      <span className="tile-meta"><b>{work.title}</b><em>{String(work.id).padStart(2, "0")}</em></span>
+                      <img src={imagePath(work)} alt={copyIndex === 2 ? work.media[0].alt : ""} onError={(event) => { event.currentTarget.src = "/products/fallback.svg"; }} loading={rowIndex > 1 ? "lazy" : "eager"} draggable={false} />
+                      <span className="tile-meta"><b>{work.title}</b><em>{formatPrice(work.variants[0].retail_price.amount_minor, work.variants[0].retail_price.currency)}</em></span>
                     </button>
                   ))}
                 </div>
@@ -386,17 +373,17 @@ export default function Home() {
       {selected && stage > 0 && (
         <>
         <section
-          className="reveal-band desktop-rotunda"
+          className="reveal-band desktop-rotunda" style={styleVariables(marketplaceRows[selectedRow].tokens)}
           aria-live="polite"
           aria-label={`${selected.title} enlarged view`}
           role="dialog"
           aria-modal="true"
         >
           <div className="band-line top-line" />
-          <div className="family-rail" aria-label={`${selected.family} collection`}>
+          <div className="family-rail" aria-label={`${marketplaceRows[selectedRow].title} collection`}>
             {family.slice(0, 2).map((work, index) => (
-              <button className={`family-card family-left family-${index}`} key={work.id} onClick={() => setSelected(work)}>
-                <img src={work.image} alt={work.title} />
+              <button className={`family-card family-left family-${index}`} key={work.product_id} onClick={() => setSelected(work)}>
+                <img src={imagePath(work)} alt={work.title} />
               </button>
             ))}
           </div>
@@ -411,28 +398,28 @@ export default function Home() {
               <span>{previousMove.label === "Ascend" ? "↖" : "←"}</span><em>{previousMove.label}</em>
             </button>
             <button className="hero" onClick={advance} aria-label={stage === 1 ? `Preview website for ${selected.title}` : `Visit website for ${selected.title}`}>
-              <img src={selected.image} alt={selected.title} />
-              <span className="hero-index">{String(selected.id).padStart(2, "0")}</span>
-              <span className="hero-action">{stage === 1 ? "Open preview" : "Visit source"} <i>↗</i></span>
+              <img src={imagePath(selected)} alt={selected.title} />
+              <span className="hero-index">{String(rows[selectedRow].findIndex((p) => p.product_id === selected.product_id) + 1).padStart(2, "0")}</span>
+              <span className="hero-action">{stage === 1 ? "Product details" : "Catalog details"} <i>↗</i></span>
             </button>
 
             <div className="work-copy">
-              <p>{selected.family} / {selected.year}</p>
+              <p>{marketplaceRows[selectedRow].title} / {selected.storefront_id.replace("storefront_", "")}</p>
               <h1>{selected.title}</h1>
-              <span>{stage === 1 ? "Selected work" : "Source preview"}</span>
+              <span>{formatPrice(selected.variants[0].retail_price.amount_minor, selected.variants[0].retail_price.currency)} · {selected.variants[0].availability.status.replace("_", " ")}</span>
             </div>
 
             {stage === 2 && (
               <div className="site-preview">
                 <div className="preview-bar">
-                  <span>{selected.title.toLowerCase().replace(" ", "-")}.studio</span>
+                  <span>{selected.product_id}.nume</span>
                   <i>•••</i>
                 </div>
                 <div className="preview-page">
-                  <span>NUME / SOURCE {String(selected.id).padStart(2, "0")}</span>
+                  <span>NUME / SOURCE {String(rows[selectedRow].findIndex((p) => p.product_id === selected.product_id) + 1).padStart(2, "0")}</span>
                   <h2>{selected.title}</h2>
-                  <p>A study in material, atmosphere and quiet movement.</p>
-                  <a href={selected.link} target="_blank" rel="noreferrer">Enter project ↗</a>
+                  <p>{selected.description}</p>
+                  <span className="demo-checkout">Demo catalog preview — checkout is not connected</span>
                 </div>
               </div>
             )}
@@ -448,8 +435,8 @@ export default function Home() {
 
           <div className="family-rail family-rail-right">
             {family.slice(2, 4).map((work, index) => (
-              <button className={`family-card family-right family-${index}`} key={work.id} onClick={() => setSelected(work)}>
-                <img src={work.image} alt={work.title} />
+              <button className={`family-card family-right family-${index}`} key={work.product_id} onClick={() => setSelected(work)}>
+                <img src={imagePath(work)} alt={work.title} />
               </button>
             ))}
           </div>
@@ -457,7 +444,7 @@ export default function Home() {
         </section>
 
         <section
-          className={`mobile-rotunda ${stage === 2 ? "is-previewing" : ""}`}
+          className={`mobile-rotunda ${stage === 2 ? "is-previewing" : ""}`} style={styleVariables(marketplaceRows[selectedRow].tokens)}
           aria-live="polite"
           aria-label={`${selected.title} enlarged mobile view`}
           role="dialog"
@@ -465,10 +452,10 @@ export default function Home() {
         >
           <div className="mobile-rotunda-meta">
             <div>
-              <p>{selected.family} / {selected.year}</p>
+              <p>{marketplaceRows[selectedRow].title} / {selected.storefront_id.replace("storefront_", "")}</p>
               <h1>{selected.title}</h1>
             </div>
-            <span>{stage === 1 ? "Selected work" : "Source preview"}</span>
+            <span>{formatPrice(selected.variants[0].retail_price.amount_minor, selected.variants[0].retail_price.currency)} · {selected.variants[0].availability.status.replace("_", " ")}</span>
           </div>
 
           <div className={`mobile-rotunda-stage ${selectedRow % 2 ? "preview-left" : "preview-right"}`}>
@@ -477,22 +464,22 @@ export default function Home() {
               onClick={advance}
               aria-label={stage === 1 ? `Preview website for ${selected.title}` : `Visit website for ${selected.title}`}
             >
-              <img src={selected.image} alt={selected.title} />
-              <span className="mobile-hero-index">{String(selected.id).padStart(2, "0")}</span>
-              <span className="mobile-hero-action">{stage === 1 ? "Open preview" : "Visit source"} <i>↗</i></span>
+              <img src={imagePath(selected)} alt={selected.title} />
+              <span className="mobile-hero-index">{String(rows[selectedRow].findIndex((p) => p.product_id === selected.product_id) + 1).padStart(2, "0")}</span>
+              <span className="mobile-hero-action">{stage === 1 ? "Product details" : "Catalog details"} <i>↗</i></span>
             </button>
 
             {stage === 2 && (
               <div className="mobile-site-preview">
                 <div className="preview-bar">
-                  <span>{selected.title.toLowerCase().replace(" ", "-")}.studio</span>
+                  <span>{selected.product_id}.nume</span>
                   <i>•••</i>
                 </div>
                 <div className="preview-page">
-                  <span>NUME / SOURCE {String(selected.id).padStart(2, "0")}</span>
+                  <span>NUME / SOURCE {String(rows[selectedRow].findIndex((p) => p.product_id === selected.product_id) + 1).padStart(2, "0")}</span>
                   <h2>{selected.title}</h2>
-                  <p>A study in material, atmosphere and quiet movement.</p>
-                  <a href={selected.link} target="_blank" rel="noreferrer">Enter project ↗</a>
+                  <p>{selected.description}</p>
+                  <span className="demo-checkout">Demo catalog preview — checkout is not connected</span>
                 </div>
               </div>
             )}
@@ -524,7 +511,7 @@ export default function Home() {
 
       <footer>
         <span>Scroll to explore</span>
-        <span>Visual archive / 001—018</span>
+        <span>Five storefront rows / 050 products</span>
       </footer>
     </main>
   );
