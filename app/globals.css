@@ -110,6 +110,27 @@ button { font: inherit; }
     filter 1.35s cubic-bezier(.16, 1, .3, 1);
 }
 
+.gallery-row {
+  padding: 28px 0 8px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--row-bg, #111) 72%, transparent), transparent);
+  color: var(--row-fg, var(--ink));
+}
+
+.row-heading {
+  position: absolute;
+  z-index: 4;
+  inset: 3px 4vw auto;
+  display: flex;
+  justify-content: space-between;
+  color: var(--row-accent, var(--muted));
+  font-family: var(--row-font, Arial, sans-serif);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.row-heading em { font-style: normal; opacity: .62; }
+
 .gallery-row.is-dragging { cursor: grabbing; }
 
 .gallery-row:nth-child(odd) { transform: translate3d(-2vw, 0, 0) rotate(-.42deg); }
@@ -191,10 +212,26 @@ button { font: inherit; }
   height: clamp(140px, 16vw, 250px);
   padding: 0;
   border: 0;
-  background: #161616;
+  border-radius: var(--row-radius, 0);
+  background: var(--row-surface, #161616);
   overflow: hidden;
   cursor: pointer;
 }
+
+.tile.availability-sold_out::after,
+.tile.availability-temporarily_unavailable::after {
+  content: "SOLD OUT";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  padding: 8px 11px;
+  background: var(--row-bg, #111);
+  color: var(--row-fg, white);
+  border: 1px solid var(--row-accent, white);
+  font-size: 9px;
+  letter-spacing: .16em;
+  transform: translate(-50%, -50%);
+}
+.tile.availability-temporarily_unavailable::after { content: "PAUSED"; }
 
 .gallery-row:nth-child(2) .tile-2,
 .gallery-row:nth-child(4) .tile-1,
@@ -264,6 +301,7 @@ button { font: inherit; }
   display: grid;
   grid-template-columns: minmax(100px, 1fr) minmax(490px, 62vw) minmax(100px, 1fr);
   align-items: center;
+  color: var(--row-fg, var(--ink));
   background:
     linear-gradient(
       90deg,
@@ -274,10 +312,15 @@ button { font: inherit; }
       rgba(8,8,8,.34) 78%,
       rgba(8,8,8,.08) 100%
     );
+  background-color: var(--row-rotunda, rgba(8,8,8,.62));
   backdrop-filter: saturate(.76) brightness(.82);
   opacity: 0;
   animation: band-in 1.3s .08s cubic-bezier(.16, 1, .3, 1) forwards;
 }
+
+.reveal-band h1,
+.mobile-rotunda h1 { font-family: var(--row-font, Georgia, serif); }
+.demo-checkout { display: inline-block; margin-top: 18px; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
 
 @keyframes band-in {
   from { opacity: 0; clip-path: inset(49.8% 0); }

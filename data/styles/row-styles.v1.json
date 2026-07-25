@@ -1,0 +1,7 @@
+{"schema_version":"1.0.0","profiles":[
+{"style_profile_id":"style_emadoku","scope":"row","tokens":{"color_background":"#3a201c","color_surface":"#5b3028","color_foreground":"#f5e4d5","color_accent":"#d7aa86","font_heading":"Georgia","header_alignment":"center","card_radius_px":28,"rotunda_surface":"rgba(48,24,20,.9)"}},
+{"style_profile_id":"style_nume_apparel","scope":"row","tokens":{"color_accent":"#9fc8c1"}},
+{"style_profile_id":"style_nume_objects","scope":"row","tokens":{"color_accent":"#c9b57f"}},
+{"style_profile_id":"style_nume_editions","scope":"row","tokens":{"color_accent":"#b5a7d2"}},
+{"style_profile_id":"style_qa","scope":"row","tokens":{"color_background":"#e9e3cb","color_surface":"#f5f0df","color_foreground":"#161616","color_accent":"#d34b33","font_heading":"Courier New","header_alignment":"right","card_radius_px":0,"rotunda_surface":"rgba(232,226,202,.94)"}}
+]}
