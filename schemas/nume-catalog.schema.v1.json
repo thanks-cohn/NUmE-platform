@@ -1,0 +1,306 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://numenume.com/schemas/nume-catalog.schema.v1.json",
+  "title": "NUME Catalog",
+  "description": "Provider-neutral commercial catalog contract for NUME storefronts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "catalog_id",
+    "merchant_id",
+    "currency",
+    "generated_at",
+    "providers",
+    "products"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "catalog_id": { "$ref": "#/$defs/stableId" },
+    "merchant_id": { "$ref": "#/$defs/stableId" },
+    "currency": { "$ref": "#/$defs/currency" },
+    "generated_at": { "$ref": "#/$defs/timestamp" },
+    "source_revision": { "type": ["string", "null"], "maxLength": 256 },
+    "providers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/provider" }
+    },
+    "products": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/product" }
+    },
+    "extensions": { "$ref": "#/$defs/extensions" }
+  },
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+      "minLength": 3,
+      "maxLength": 128
+    },
+    "externalId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[a-z]{3}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "extensions": {
+      "description": "Namespaced, non-authoritative provider or future NUME fields.",
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z0-9_-]+)+$"
+      },
+      "additionalProperties": true
+    },
+    "money": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["amount_minor", "currency"],
+      "properties": {
+        "amount_minor": {
+          "description": "Integer amount in the currency minor unit.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "currency": { "$ref": "#/$defs/currency" }
+      }
+    },
+    "externalReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system", "id"],
+      "properties": {
+        "system": {
+          "type": "string",
+          "enum": [
+            "stripe_product",
+            "stripe_price",
+            "printify_product",
+            "printify_variant",
+            "printful_product",
+            "printful_variant",
+            "merchant_sku",
+            "other"
+          ]
+        },
+        "id": { "$ref": "#/$defs/externalId" },
+        "account_id": { "type": ["string", "null"], "maxLength": 512 },
+        "provider_id": { "type": ["string", "null"], "maxLength": 128 },
+        "url": { "type": ["string", "null"], "format": "uri", "maxLength": 4096 }
+      }
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider_id", "adapter", "display_name", "enabled"],
+      "properties": {
+        "provider_id": { "$ref": "#/$defs/stableId" },
+        "adapter": {
+          "type": "string",
+          "enum": ["manual", "printify", "printful", "custom"]
+        },
+        "display_name": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "enabled": { "type": "boolean" },
+        "connection_ref": {
+          "description": "Reference to a server-side credential record; never a secret.",
+          "type": ["string", "null"],
+          "maxLength": 256
+        },
+        "last_synced_at": {
+          "oneOf": [
+            { "$ref": "#/$defs/timestamp" },
+            { "type": "null" }
+          ]
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["media_id", "role", "source", "url", "alt"],
+      "properties": {
+        "media_id": { "$ref": "#/$defs/stableId" },
+        "role": {
+          "type": "string",
+          "enum": ["tile", "hero", "gallery", "detail", "swatch"]
+        },
+        "source": {
+          "type": "string",
+          "enum": ["r2", "stripe", "provider", "merchant"]
+        },
+        "url": { "type": "string", "format": "uri", "maxLength": 4096 },
+        "object_key": { "type": ["string", "null"], "maxLength": 2048 },
+        "alt": { "type": "string", "maxLength": 500 },
+        "width": { "type": ["integer", "null"], "minimum": 1 },
+        "height": { "type": ["integer", "null"], "minimum": 1 },
+        "checksum_sha256": {
+          "type": ["string", "null"],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "sort_order": { "type": "integer", "minimum": 0 },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "optionValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "value"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "value": { "type": "string", "minLength": 1, "maxLength": 160 }
+      }
+    },
+    "availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "source", "checked_at"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "available",
+            "low_stock",
+            "sold_out",
+            "temporarily_unavailable",
+            "discontinued",
+            "preorder",
+            "unknown",
+            "mapping_error",
+            "suspended"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "enum": ["provider", "merchant", "nume", "combined"]
+        },
+        "quantity": {
+          "description": "Null means no trustworthy finite quantity is exposed.",
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "checked_at": { "$ref": "#/$defs/timestamp" },
+        "reason": { "type": ["string", "null"], "maxLength": 500 },
+        "allow_backorder": { "type": "boolean", "default": false }
+      }
+    },
+    "fulfillment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider_id", "provider_product_id", "provider_variant_id"],
+      "properties": {
+        "provider_id": { "$ref": "#/$defs/stableId" },
+        "provider_product_id": { "$ref": "#/$defs/externalId" },
+        "provider_variant_id": { "$ref": "#/$defs/externalId" },
+        "provider_sku": { "type": ["string", "null"], "maxLength": 256 },
+        "requires_shipping": { "type": "boolean" },
+        "production_cost": {
+          "oneOf": [
+            { "$ref": "#/$defs/money" },
+            { "type": "null" }
+          ]
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "variant_id",
+        "sku",
+        "title",
+        "active",
+        "options",
+        "retail_price",
+        "availability",
+        "external_references"
+      ],
+      "properties": {
+        "variant_id": { "$ref": "#/$defs/stableId" },
+        "sku": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "active": { "type": "boolean" },
+        "options": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/optionValue" }
+        },
+        "retail_price": { "$ref": "#/$defs/money" },
+        "compare_at_price": {
+          "oneOf": [
+            { "$ref": "#/$defs/money" },
+            { "type": "null" }
+          ]
+        },
+        "availability": { "$ref": "#/$defs/availability" },
+        "fulfillment": {
+          "oneOf": [
+            { "$ref": "#/$defs/fulfillment" },
+            { "type": "null" }
+          ]
+        },
+        "external_references": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/externalReference" }
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "product": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product_id",
+        "storefront_id",
+        "title",
+        "description",
+        "active",
+        "status",
+        "media",
+        "variants",
+        "external_references",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "product_id": { "$ref": "#/$defs/stableId" },
+        "storefront_id": { "$ref": "#/$defs/stableId" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "description": { "type": "string", "maxLength": 20000 },
+        "active": { "type": "boolean" },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "active", "archived", "suspended"]
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "uniqueItems": true
+        },
+        "media": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/media" }
+        },
+        "variants": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/variant" }
+        },
+        "external_references": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/externalReference" }
+        },
+        "created_at": { "$ref": "#/$defs/timestamp" },
+        "updated_at": { "$ref": "#/$defs/timestamp" },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    }
+  }
+}
