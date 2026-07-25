@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "catalog_numenume_pilot",
+  "merchant_id": "merchant_numenume",
+  "currency": "usd",
+  "generated_at": "2026-07-25T12:00:00Z",
+  "source_revision": "pilot-1",
+  "providers": [
+    {
+      "provider_id": "provider_printify_primary",
+      "adapter": "printify",
+      "display_name": "Printify",
+      "enabled": true,
+      "connection_ref": "secretref_printify_numenume",
+      "last_synced_at": "2026-07-25T11:55:00Z",
+      "extensions": {
+        "printify.shop_id": "shop_example"
+      }
+    }
+  ],
+  "products": [
+    {
+      "product_id": "product_midnight_jacket",
+      "storefront_id": "storefront_numenume",
+      "title": "Midnight Jacket",
+      "description": "Heavyweight embroidered jacket.",
+      "active": true,
+      "status": "active",
+      "tags": ["apparel", "outerwear"],
+      "media": [
+        {
+          "media_id": "media_midnight_jacket_hero",
+          "role": "hero",
+          "source": "r2",
+          "url": "https://media.example.com/products/midnight-jacket/hero.webp",
+          "object_key": "products/midnight-jacket/hero.webp",
+          "alt": "Black embroidered Midnight Jacket",
+          "width": 1600,
+          "height": 2000,
+          "checksum_sha256": null,
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_midnight_jacket_black_small",
+          "sku": "NUME-MJ-BLK-S",
+          "title": "Black / Small",
+          "active": true,
+          "options": [
+            {"name": "color", "value": "Black"},
+            {"name": "size", "value": "S"}
+          ],
+          "retail_price": {"amount_minor": 6800, "currency": "usd"},
+          "compare_at_price": null,
+          "availability": {
+            "status": "available",
+            "source": "provider",
+            "quantity": null,
+            "checked_at": "2026-07-25T11:55:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "fulfillment": {
+            "provider_id": "provider_printify_primary",
+            "provider_product_id": "printify_product_100",
+            "provider_variant_id": "printify_variant_100_s",
+            "provider_sku": "PFY-100-S",
+            "requires_shipping": true,
+            "production_cost": {"amount_minor": 2940, "currency": "usd"},
+            "extensions": {"printify.blueprint_id": "12"}
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_example_small",
+              "account_id": "acct_example",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_variant_100_s",
+              "account_id": null,
+              "provider_id": "provider_printify_primary",
+              "url": null
+            }
+          ],
+          "extensions": {}
+        },
+        {
+          "variant_id": "variant_midnight_jacket_black_medium",
+          "sku": "NUME-MJ-BLK-M",
+          "title": "Black / Medium",
+          "active": false,
+          "options": [
+            {"name": "color", "value": "Black"},
+            {"name": "size", "value": "M"}
+          ],
+          "retail_price": {"amount_minor": 6800, "currency": "usd"},
+          "compare_at_price": null,
+          "availability": {
+            "status": "sold_out",
+            "source": "merchant",
+            "quantity": 0,
+            "checked_at": "2026-07-25T11:58:00Z",
+            "reason": "Merchant marked this variant sold out.",
+            "allow_backorder": false
+          },
+          "fulfillment": {
+            "provider_id": "provider_printify_primary",
+            "provider_product_id": "printify_product_100",
+            "provider_variant_id": "printify_variant_100_m",
+            "provider_sku": "PFY-100-M",
+            "requires_shipping": true,
+            "production_cost": {"amount_minor": 2940, "currency": "usd"},
+            "extensions": {}
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_example_medium",
+              "account_id": "acct_example",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_variant_100_m",
+              "account_id": null,
+              "provider_id": "provider_printify_primary",
+              "url": null
+            }
+          ],
+          "extensions": {}
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_example_midnight_jacket",
+          "account_id": "acct_example",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_product_100",
+          "account_id": null,
+          "provider_id": "provider_printify_primary",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T11:58:00Z",
+      "extensions": {
+        "nume.presentation_profile": "editorial-dark"
+      }
+    }
+  ],
+  "extensions": {
+    "nume.catalog_mode": "pilot"
+  }
+}
