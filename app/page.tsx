@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { formatPrice, imagePath, isPurchasable, marketplaceRows, type Product, type StyleTokens } from "../lib/catalog";
+import { formatPrice, imagePath, isPurchasable, marketplaceRows, productImageFallback, type Product, type StyleTokens } from "../lib/catalog";
+import { movementConfiguration, wrapTickerPosition } from "../lib/movement.mjs";
 
 const rows = marketplaceRows.map((row) => row.products);
 const ROW_COPIES = 5;
@@ -108,7 +109,8 @@ export default function Home() {
   useEffect(() => {
     let frame = 0;
     let lastTime = performance.now();
-    const speeds = [0.42, 0.32, 0.37, 0.29];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const movement = movementConfiguration(rows.length, reducedMotion);
 
     const animate = (time: number) => {
       const timeScale = Math.min((time - lastTime) / 16.667, 2.5);
@@ -121,7 +123,7 @@ export default function Home() {
         if (!cycleWidth) return;
 
         const state = tickerState.current[rowIndex];
-        const direction = rowIndex % 2 === 0 ? -1 : 1;
+        const { direction, speed } = movement[rowIndex];
 
         if (!state.initialized) {
           state.position = -cycleWidth * 2;
@@ -129,19 +131,14 @@ export default function Home() {
           state.initialized = true;
         }
 
-        const ambientStep = direction * speeds[rowIndex] * timeScale;
+        const ambientStep = direction * speed * timeScale;
         state.target += ambientStep;
         state.position += ambientStep;
         state.position += (state.target - state.position) * 0.075;
 
-        while (state.position <= -cycleWidth * 3) {
-          state.position += cycleWidth;
-          state.target += cycleWidth;
-        }
-        while (state.position >= -cycleWidth) {
-          state.position -= cycleWidth;
-          state.target -= cycleWidth;
-        }
+        const wrapped = wrapTickerPosition(state.position, state.target, cycleWidth);
+        state.position = wrapped.position;
+        state.target = wrapped.target;
 
         track.style.transform = `translate3d(${state.position}px, 0, 0)`;
       });
@@ -329,7 +326,7 @@ export default function Home() {
                       draggable={false}
                       data-product-id={work.product_id}
                     >
-                      <img src={imagePath(work)} alt={copyIndex === 2 ? work.media[0].alt : ""} onError={(event) => { event.currentTarget.src = "/products/fallback.svg"; }} loading={rowIndex > 1 ? "lazy" : "eager"} draggable={false} />
+                      <img src={imagePath(work)} alt={copyIndex === 2 ? work.media[0].alt : ""} onError={(event) => { if (event.currentTarget.src !== productImageFallback()) event.currentTarget.src = productImageFallback(); }} loading={rowIndex > 1 ? "lazy" : "eager"} draggable={false} />
                       <span className="tile-meta"><b>{work.title}</b><em>{formatPrice(work.variants[0].retail_price.amount_minor, work.variants[0].retail_price.currency)}</em></span>
                     </button>
                   ))}
@@ -383,7 +380,7 @@ export default function Home() {
           <div className="family-rail" aria-label={`${marketplaceRows[selectedRow].title} collection`}>
             {family.slice(0, 2).map((work, index) => (
               <button className={`family-card family-left family-${index}`} key={work.product_id} onClick={() => setSelected(work)}>
-                <img src={imagePath(work)} alt={work.title} />
+                <img src={imagePath(work)} alt={work.media[0].alt} onError={(event) => { event.currentTarget.src = productImageFallback(); }} />
               </button>
             ))}
           </div>
@@ -398,7 +395,7 @@ export default function Home() {
               <span>{previousMove.label === "Ascend" ? "↖" : "←"}</span><em>{previousMove.label}</em>
             </button>
             <button className="hero" onClick={advance} aria-label={stage === 1 ? `Preview website for ${selected.title}` : `Visit website for ${selected.title}`}>
-              <img src={imagePath(selected)} alt={selected.title} />
+              <img src={imagePath(selected)} alt={selected.media[0].alt} onError={(event) => { event.currentTarget.src = productImageFallback(); }} />
               <span className="hero-index">{String(rows[selectedRow].findIndex((p) => p.product_id === selected.product_id) + 1).padStart(2, "0")}</span>
               <span className="hero-action">{stage === 1 ? "Product details" : "Catalog details"} <i>↗</i></span>
             </button>
@@ -436,7 +433,7 @@ export default function Home() {
           <div className="family-rail family-rail-right">
             {family.slice(2, 4).map((work, index) => (
               <button className={`family-card family-right family-${index}`} key={work.product_id} onClick={() => setSelected(work)}>
-                <img src={imagePath(work)} alt={work.title} />
+                <img src={imagePath(work)} alt={work.media[0].alt} onError={(event) => { event.currentTarget.src = productImageFallback(); }} />
               </button>
             ))}
           </div>
@@ -464,7 +461,7 @@ export default function Home() {
               onClick={advance}
               aria-label={stage === 1 ? `Preview website for ${selected.title}` : `Visit website for ${selected.title}`}
             >
-              <img src={imagePath(selected)} alt={selected.title} />
+              <img src={imagePath(selected)} alt={selected.media[0].alt} onError={(event) => { event.currentTarget.src = productImageFallback(); }} />
               <span className="mobile-hero-index">{String(rows[selectedRow].findIndex((p) => p.product_id === selected.product_id) + 1).padStart(2, "0")}</span>
               <span className="mobile-hero-action">{stage === 1 ? "Product details" : "Catalog details"} <i>↗</i></span>
             </button>

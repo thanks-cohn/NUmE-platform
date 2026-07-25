@@ -1,1 +1,13 @@
-{"schema_version":"1.0.0","groups":[{"entrepreneur_group_id":"group_numenume","display_name":"NUME / NUMENUMe","style_profile_id":"style_group_numenume","tokens":{"color_background":"#101315","color_surface":"#1b2023","color_foreground":"#f1eee5","color_accent":"#a8c1bd","font_heading":"Arial Narrow","header_alignment":"left","card_radius_px":2,"rotunda_surface":"rgba(11,15,17,.9)"}}]}
+{
+  "schema_version": "1.0.0",
+  "groups": [{
+    "entrepreneur_group_id": "group_numenume",
+    "display_name": "NUME / NUMENUMe",
+    "style_profile_id": "style_group_numenume",
+    "tokens": {
+      "color_background": "#e8e3da", "color_surface": "#f6f2e9", "color_foreground": "#111111",
+      "color_accent": "#5f6865", "font_heading": "Helvetica Neue", "header_alignment": "left",
+      "card_radius_px": 3, "rotunda_surface": "rgba(232,227,218,.94)"
+    }
+  }]
+}

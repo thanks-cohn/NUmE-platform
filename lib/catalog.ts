@@ -2,6 +2,7 @@ import catalogData from "../data/catalogs/nume-marketplace.v1.json";
 import layoutData from "../data/layout/marketplace-layout.v1.json";
 import groupData from "../data/styles/entrepreneur-groups.v1.json";
 import rowStyleData from "../data/styles/row-styles.v1.json";
+import { resolveAssetPath } from "./asset-path.mjs";
 
 export type Availability = "available" | "low_stock" | "sold_out" | "temporarily_unavailable" | "discontinued" | "preorder" | "unknown" | "mapping_error" | "suspended";
 export type Product = (typeof catalogData.products)[number];
@@ -25,8 +26,14 @@ export const marketplaceRows: MarketplaceRow[] = layoutData.rows
   }));
 
 export function imagePath(product: Product) {
-  return new URL(product.media[0].url).pathname;
+  const media = product.media[0];
+  if (!media) return resolveAssetPath(null);
+  if (media.object_key) return resolveAssetPath(media.object_key);
+  const url = new URL(media.url);
+  return url.hostname === "numenume.com" ? resolveAssetPath(url.pathname) : media.url;
 }
+
+export { productImageFallback, resolveAssetPath } from "./asset-path.mjs";
 
 export function formatPrice(amountMinor: number, currency: string) {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: currency.toUpperCase() }).format(amountMinor / 100);
