@@ -1,10 +1,16 @@
 /** Cloudflare Worker entry point for the vinext-starter template. */
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
+import { handleCatalogApi } from "../server/http/catalog-api";
+import { CloudflareCatalogStorage } from "../server/catalog/cloudflare-storage";
+import { handleFeaturedApi } from "../server/http/featured-api";
 
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
+  NUME_MERCHANT_TOKEN?: string;
+  NUME_CORS_ORIGINS?: string;
+  CATALOG_DB?: D1Database;
   IMAGES: {
     input(stream: ReadableStream): {
       transform(options: Record<string, unknown>): {
@@ -28,6 +34,10 @@ interface ExecutionContext {
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    if (url.pathname === "/api/health") return Response.json({ ok: true, target: env.NUME_MERCHANT_TOKEN ? "cloudflare" : "local", stripe: env.NUME_MERCHANT_TOKEN ? "configured-by-binding" : "mock" });
+    if (url.pathname === "/api/merchant/catalog") return handleCatalogApi(request, env, env.CATALOG_DB ? new CloudflareCatalogStorage(env.CATALOG_DB) : undefined);
+    if (url.pathname === "/api/operator/featured-storefront" && request.method === "POST") return handleFeaturedApi(request, env.NUME_MERCHANT_TOKEN);
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];

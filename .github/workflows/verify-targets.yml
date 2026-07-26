@@ -1,0 +1,20 @@
+name: Verify deployment targets
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    strategy:
+      matrix: { target: [shared, pages, cloudflare] }
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run lint && npm run typecheck && npm test
+        if: matrix.target == 'shared'
+      - run: npm run build:pages
+        if: matrix.target == 'pages'
+      - run: npm run build:cloudflare
+        if: matrix.target == 'cloudflare'
