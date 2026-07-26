@@ -4,15 +4,21 @@
   "storefronts": [
     {
       "storefront_id": "storefront_emadoku",
-      "display_name": "Emadoku"
+      "display_name": "Emadoku",
+      "slug": "emadoku",
+      "status": "active"
     },
     {
       "storefront_id": "storefront_numenume",
-      "display_name": "NUME / NUMENUMe"
+      "display_name": "Venasi",
+      "slug": "venasi",
+      "status": "active"
     },
     {
       "storefront_id": "storefront_qa",
-      "display_name": "Q&A"
+      "display_name": "Q&A",
+      "slug": "qa",
+      "status": "active"
     }
   ],
   "rows": [
@@ -20,7 +26,7 @@
       "row_id": "row_emadoku",
       "storefront_id": "storefront_emadoku",
       "entrepreneur_group_id": null,
-      "title": "Emadoku Collection",
+      "title": "Emadoku",
       "position": 1,
       "style_profile_id": "style_emadoku",
       "product_ids": [
@@ -35,13 +41,15 @@
         "product_emadoku_09",
         "product_emadoku_10"
       ],
-      "subtitle": "Manga, streetwear and print culture"
+      "subtitle": "Manga, streetwear and print culture",
+      "heading_placement": "start",
+      "heading_role": "family"
     },
     {
       "row_id": "row_nume_apparel",
       "storefront_id": "storefront_numenume",
       "entrepreneur_group_id": "group_numenume",
-      "title": "NUME Apparel",
+      "title": "Clothing",
       "position": 2,
       "style_profile_id": "style_nume_apparel",
       "product_ids": [
@@ -56,13 +64,15 @@
         "product_nume_apparel_09",
         "product_nume_apparel_10"
       ],
-      "subtitle": "Editorial clothing for considered work"
+      "subtitle": "Venasi fashion studies",
+      "heading_placement": "three-quarter",
+      "heading_role": "family"
     },
     {
       "row_id": "row_nume_objects",
       "storefront_id": "storefront_numenume",
       "entrepreneur_group_id": "group_numenume",
-      "title": "NUME Objects",
+      "title": "VENASI",
       "position": 3,
       "style_profile_id": "style_nume_objects",
       "product_ids": [
@@ -77,13 +87,15 @@
         "product_nume_objects_09",
         "product_nume_objects_10"
       ],
-      "subtitle": "Refined tools for studio and home"
+      "subtitle": "Architectural fashion and objects",
+      "heading_placement": "center",
+      "heading_role": "primary"
     },
     {
       "row_id": "row_nume_editions",
       "storefront_id": "storefront_numenume",
       "entrepreneur_group_id": "group_numenume",
-      "title": "NUME Editions",
+      "title": "Swimwear",
       "position": 4,
       "style_profile_id": "style_nume_editions",
       "product_ids": [
@@ -98,13 +110,15 @@
         "product_nume_editions_09",
         "product_nume_editions_10"
       ],
-      "subtitle": "Independent books and printed matter"
+      "subtitle": "Venasi editions for water and light",
+      "heading_placement": "quarter",
+      "heading_role": "family"
     },
     {
       "row_id": "row_qa",
       "storefront_id": "storefront_qa",
       "entrepreneur_group_id": null,
-      "title": "Q&A Fashion",
+      "title": "Q&A",
       "position": 5,
       "style_profile_id": "style_qa",
       "product_ids": [
@@ -119,7 +133,9 @@
         "product_qa_09",
         "product_qa_10"
       ],
-      "subtitle": "Pink neon, playful glamour and joyful style"
+      "subtitle": "Pink neon, playful glamour and joyful style",
+      "heading_placement": "vertical-end",
+      "heading_role": "primary"
     }
   ]
 }

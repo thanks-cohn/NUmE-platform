@@ -27,7 +27,7 @@
       "style_profile_id": "style_nume_apparel",
       "scope": "row",
       "tokens": {
-        "color_accent": "#485d59",
+        "color_accent": "#6f745f",
         "vendor_image_fallback_background": "#171717",
         "vendor_image_fallback_foreground": "#ffffff"
       }
@@ -36,7 +36,7 @@
       "style_profile_id": "style_nume_objects",
       "scope": "row",
       "tokens": {
-        "color_accent": "#826f4d",
+        "color_accent": "#9a835e",
         "vendor_image_fallback_background": "#171717",
         "vendor_image_fallback_foreground": "#ffffff"
       }
@@ -45,7 +45,7 @@
       "style_profile_id": "style_nume_editions",
       "scope": "row",
       "tokens": {
-        "color_accent": "#515e72",
+        "color_accent": "#59605b",
         "vendor_image_fallback_background": "#171717",
         "vendor_image_fallback_foreground": "#ffffff"
       }

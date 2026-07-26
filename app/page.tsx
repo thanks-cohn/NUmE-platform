@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
-import { displayLabel, formatPrice, isPurchasable, marketplaceRows, type Product, type StyleTokens } from "../lib/catalog";
+import { displayLabel, featuredPlacementData, formatPrice, isPurchasable, layoutData, marketplaceRows, type Product, type StyleTokens } from "../lib/catalog";
+import { resolveFeaturedPlacement } from "../lib/featured-placement.mjs";
 import { ProductImage } from "./product-image";
 import { movementConfiguration, wrapTickerPosition } from "../lib/movement.mjs";
-import { activeTickerIndexes, headingComposition, makeStressRows, virtualWindow } from "../lib/virtualization.mjs";
+import { activeTickerIndexes, makeStressRows, virtualWindow } from "../lib/virtualization.mjs";
 
 const rows = marketplaceRows.map((row) => row.products);
 const ROW_COPIES = 5;
@@ -56,6 +57,7 @@ export default function Home() {
   const edgeHoldDelay = useRef<number | null>(null);
   const edgeHoldRepeat = useRef<number | null>(null);
   const rotundaOpen = stage > 0;
+  const initialCenterComplete = useRef(false);
 
   const family = useMemo(
     () => selected ? rows[selectedRow].filter((product) => product.product_id !== selected.product_id).slice(0, 4) : [],
@@ -66,6 +68,19 @@ export default function Home() {
     if (process.env.NODE_ENV === "production") return;
     const requested = Number(new URLSearchParams(window.location.search).get("numeStress"));
     if (requested >= 50 && requested <= 1000) queueMicrotask(() => setLogicalRows(makeStressRows(marketplaceRows, requested)));
+  }, []);
+
+  useLayoutEffect(() => {
+    if (initialCenterComplete.current || location.hash) return;
+    initialCenterComplete.current = true;
+    const match = location.pathname.match(/^\/storefront\/([^/]+)\/?$/);
+    const resolved = resolveFeaturedPlacement(featuredPlacementData, layoutData, { slug: match ? decodeURIComponent(match[1]) : undefined } as never);
+    if (!resolved) return;
+    const rowIndex = marketplaceRows.findIndex((row) => row.row_id === resolved.anchor_row_id);
+    if (rowIndex < 0) return;
+    const rowHeight = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gallery-row-height")) || DEFAULT_ROW_HEIGHT;
+    window.scrollTo({ top: Math.max(0, 122 + rowIndex * rowHeight + rowHeight / 2 - innerHeight / 2), behavior: "instant" });
+    document.documentElement.dataset.featuredResolution = resolved.reason;
   }, []);
 
   useEffect(() => {
@@ -341,7 +356,7 @@ export default function Home() {
           const row = rows[sourceIndex];
           return (
           <div
-            className={`gallery-row row-${sourceIndex + 1} heading-${headingComposition(rowIndex)} ${sourceIndex < selectedRow ? "row-before" : sourceIndex > selectedRow ? "row-after" : "row-selected"}`}
+            className={`gallery-row row-${sourceIndex + 1} heading-${logicalRow.heading_placement} ${sourceIndex < selectedRow ? "row-before" : sourceIndex > selectedRow ? "row-after" : "row-selected"}`}
             key={logicalRow.logicalKey}
             data-nume-row={logicalRow.row_id}
             data-nume-vendor={logicalRow.merchant_id}
@@ -357,7 +372,7 @@ export default function Home() {
             onPointerUp={(event) => endDrag(event, rowIndex)}
             onPointerCancel={(event) => endDrag(event, rowIndex)}
           >
-            <h2 className="row-heading">{logicalRow.title}</h2>
+            <div className="row-heading-area"><h2 className={`row-heading ${logicalRow.heading_role === "primary" ? "is-primary" : ""}`}><span aria-label={logicalRow.title}>{logicalRow.title}</span><small>{logicalRow.subtitle}</small></h2></div>
             <div className="row-controls" aria-label={`Move row ${rowIndex + 1}`}>
               <button onClick={() => nudgeRow(rowIndex, -1)} aria-label={`Move row ${rowIndex + 1} left`}>←</button>
               <span>{String(rowIndex + 1).padStart(2, "0")}</span>
