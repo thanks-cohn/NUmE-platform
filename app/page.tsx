@@ -348,6 +348,7 @@ export default function Home() {
             data-nume-row={logicalRow.row_id}
             data-nume-entrepreneur={logicalRow.entrepreneur_group_id ?? undefined}
             data-nume-style={logicalRow.style_profile_id}
+            data-mobile-align={logicalRow.tokens.header_alignment}
             data-logical-index={rowIndex}
             style={styleVariables(logicalRow.tokens)}
             onPointerEnter={() => setHoveredRow(rowIndex)}
@@ -518,11 +519,14 @@ export default function Home() {
           aria-modal="true"
         >
           <div className="mobile-rotunda-meta">
-            <div>
+            <div className="mobile-rotunda-title">
               <p>{marketplaceRows[selectedRow].title}</p>
               <h1>{selected.title}</h1>
             </div>
-            <span>{formatPrice(selected.variants[0].retail_price.amount_minor, selected.variants[0].retail_price.currency)} · {displayLabel(selected.variants[0].availability.status)}</span>
+            <div className="mobile-rotunda-details" aria-label="Price and availability">
+              <span>{formatPrice(selected.variants[0].retail_price.amount_minor, selected.variants[0].retail_price.currency)}</span>
+              <span>{displayLabel(selected.variants[0].availability.status)}</span>
+            </div>
           </div>
 
           <div className={`mobile-rotunda-stage ${selectedRow % 2 ? "preview-left" : "preview-right"}`}>
