@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "rows": [
+    {"row_id":"row_emadoku","merchant_id":"merchant_emadoku","storefront_id":"storefront_emadoku","vendor_namespace":"merchant_emadoku","position":1,"enabled":true},
+    {"row_id":"row_nume_apparel","merchant_id":"merchant_nume","storefront_id":"storefront_numenume","vendor_namespace":"merchant_nume","position":2,"enabled":true},
+    {"row_id":"row_nume_objects","merchant_id":"merchant_nume","storefront_id":"storefront_numenume","vendor_namespace":"merchant_nume","position":3,"enabled":true},
+    {"row_id":"row_nume_editions","merchant_id":"merchant_nume","storefront_id":"storefront_numenume","vendor_namespace":"merchant_nume","position":4,"enabled":true},
+    {"row_id":"row_qa","merchant_id":"merchant_qa","storefront_id":"storefront_qa","vendor_namespace":"merchant_qa","position":5,"enabled":true}
+  ]
+}

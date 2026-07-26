@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "merchant_id": "merchant_qa",
+  "profiles": [
+    {
+      "style_profile_id": "style_qa",
+      "scope": "row",
+      "tokens": {
+        "color_background": "#4b063d",
+        "color_surface": "#ffd6ee",
+        "color_foreground": "#fff7fc",
+        "color_accent": "#ff4fca",
+        "font_heading": "'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif",
+        "font_body": "'Trebuchet MS', Arial, sans-serif",
+        "heading_size": "clamp(25px, 3.6vw, 54px)",
+        "heading_weight": 800,
+        "heading_tracking": ".025em",
+        "border_style": "2px solid #ff8ed8",
+        "decoration": "sparkle",
+        "header_alignment": "right",
+        "card_radius_px": 26,
+        "rotunda_surface": "rgba(75,6,61,.96)",
+        "vendor_image_fallback_background": "#ffd6ee",
+        "vendor_image_fallback_foreground": "#fff7fc"
+      }
+    }
+  ]
+}

@@ -2,13 +2,14 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { displayLabel, formatPrice, imagePath, isPurchasable, localImagePath, marketplaceRows, productImageFallback, type Product, type StyleTokens } from "../lib/catalog";
+import { displayLabel, formatPrice, isPurchasable, marketplaceRows, type Product, type StyleTokens } from "../lib/catalog";
+import { ProductImage } from "./product-image";
 import { movementConfiguration, wrapTickerPosition } from "../lib/movement.mjs";
 import { activeTickerIndexes, headingComposition, makeStressRows, virtualWindow } from "../lib/virtualization.mjs";
 
 const rows = marketplaceRows.map((row) => row.products);
 const ROW_COPIES = 5;
-const ROW_HEIGHT = 286;
+const DEFAULT_ROW_HEIGHT = 300;
 const INITIAL_WINDOW = { start: 0, end: Math.min(5, marketplaceRows.length), top: 0, bottom: 0 };
 
 type TickerState = {
@@ -29,16 +30,7 @@ function styleVariables(tokens: StyleTokens) {
   } as React.CSSProperties;
 }
 
-function ProductImage({ product, alt, loading }: { product: Product; alt: string; loading?: "eager" | "lazy" }) {
-  // Native images preserve the required remote → local → SVG fallback chain.
-  // eslint-disable-next-line @next/next/no-img-element
-  return <img src={imagePath(product)} alt={alt} loading={loading} decoding="async" width={660} height={500} className="is-loading" draggable={false} data-fallback="local" onLoad={(event) => event.currentTarget.classList.remove("is-loading")} onError={(event) => {
-    const image = event.currentTarget;
-    image.classList.add("is-loading");
-    if (image.dataset.fallback === "local") { image.dataset.fallback = "final"; image.src = localImagePath(product); }
-    else if (image.dataset.fallback === "final") { image.dataset.fallback = "done"; image.src = productImageFallback(); }
-  }} />;
-}
+
 
 export default function Home() {
   const [selected, setSelected] = useState<Product | null>(null);
@@ -47,7 +39,8 @@ export default function Home() {
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const [logicalRows, setLogicalRows] = useState(() => makeStressRows(marketplaceRows, marketplaceRows.length));
   const [windowRange, setWindowRange] = useState(INITIAL_WINDOW);
-  const virtualMetrics = useRef({ offset: 0, viewport: 900 });
+  const virtualMetrics = useRef({ offset: 0, viewport: 900, rowHeight: DEFAULT_ROW_HEIGHT });
+  const windowRangeRef = useRef(INITIAL_WINDOW);
   const rowTracks = useRef(new Map<number, HTMLDivElement>());
   const rowSegments = useRef(new Map<number, HTMLDivElement>());
   const cycleWidths = useRef(new Map<number, number>());
@@ -82,16 +75,21 @@ export default function Home() {
       const galleryTop = 122;
       const offset = Math.max(0, window.scrollY - galleryTop);
       const viewport = window.innerHeight;
-      virtualMetrics.current = { offset, viewport };
+      virtualMetrics.current = { offset, viewport, rowHeight: virtualMetrics.current.rowHeight };
       for (const [index, segment] of rowSegments.current) cycleWidths.current.set(index, segment.getBoundingClientRect().width + 14);
-      const next = virtualWindow(logicalRows.length, offset, viewport, ROW_HEIGHT);
+      const rowHeight = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gallery-row-height")) || DEFAULT_ROW_HEIGHT;
+      virtualMetrics.current.rowHeight = rowHeight;
+      const next = virtualWindow(logicalRows.length, offset, viewport, rowHeight);
+      windowRangeRef.current = next;
       setWindowRange(current => current.start === next.start && current.end === next.end && current.bottom === next.bottom ? current : next);
     };
     const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
-    return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
+    const observer = new ResizeObserver(onScroll); observer.observe(document.documentElement);
+    document.fonts?.ready.then(onScroll);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); observer.disconnect(); };
   }, [logicalRows.length]);
 
   useEffect(() => {
@@ -162,8 +160,8 @@ export default function Home() {
       if (document.visibilityState === "hidden") { frame = 0; return; }
       const timeScale = Math.min((time - lastTime) / 16.667, 2.5);
       lastTime = time;
-      const { offset, viewport } = virtualMetrics.current;
-      const active = activeTickerIndexes(windowRange, offset, viewport, ROW_HEIGHT, activeCeiling);
+      const { offset, viewport, rowHeight } = virtualMetrics.current;
+      const active = activeTickerIndexes(windowRangeRef.current, offset, viewport, rowHeight, activeCeiling);
       for (const logicalIndex of active) {
         const track = rowTracks.current.get(logicalIndex);
         const cycleWidth = cycleWidths.current.get(logicalIndex) ?? 0;
@@ -178,7 +176,7 @@ export default function Home() {
         track.style.transform = `translate3d(${state.position}px, 0, 0)`;
       }
       if (process.env.NODE_ENV !== "production") {
-        document.documentElement.dataset.numePerformance = JSON.stringify({ logicalRows: logicalRows.length, mountedRows: windowRange.end - windowRange.start, activeRows: active.length, window: [windowRange.start, windowRange.end] });
+        document.documentElement.dataset.numePerformance = JSON.stringify({ logicalRows: logicalRows.length, mountedRows: windowRangeRef.current.end - windowRangeRef.current.start, activeRows: active.length, schedulerCount: 1, window: [windowRangeRef.current.start, windowRangeRef.current.end] });
       }
       frame = requestAnimationFrame(animate);
     };
@@ -190,7 +188,7 @@ export default function Home() {
     document.addEventListener("visibilitychange", onVisibility);
     frame = requestAnimationFrame(animate);
     return () => { document.removeEventListener("visibilitychange", onVisibility); cancelAnimationFrame(frame); };
-  }, [logicalRows.length, windowRange]);
+  }, [logicalRows.length]);
 
   function openWork(work: Product, rowIndex: number) {
     if (performance.now() < suppressOpenUntil.current) return;
@@ -282,7 +280,7 @@ export default function Home() {
 
   function focusLogicalRow(targetRow: number, itemIndex: number) {
     if (targetRow < 0 || targetRow >= logicalRows.length) return;
-    window.scrollTo({ top: 122 + targetRow * ROW_HEIGHT });
+    window.scrollTo({ top: 122 + targetRow * virtualMetrics.current.rowHeight });
     requestAnimationFrame(() => requestAnimationFrame(() => {
       const row = document.querySelector<HTMLElement>(`[data-logical-index="${targetRow}"]`);
       row?.querySelectorAll<HTMLButtonElement>('.track-segment[aria-hidden="false"] .tile, .track-segment:not([aria-hidden]) .tile')[itemIndex]?.focus();
@@ -346,6 +344,7 @@ export default function Home() {
             className={`gallery-row row-${sourceIndex + 1} heading-${headingComposition(rowIndex)} ${sourceIndex < selectedRow ? "row-before" : sourceIndex > selectedRow ? "row-after" : "row-selected"}`}
             key={logicalRow.logicalKey}
             data-nume-row={logicalRow.row_id}
+            data-nume-vendor={logicalRow.merchant_id}
             data-nume-entrepreneur={logicalRow.entrepreneur_group_id ?? undefined}
             data-nume-style={logicalRow.style_profile_id}
             data-logical-index={rowIndex}
@@ -358,7 +357,7 @@ export default function Home() {
             onPointerUp={(event) => endDrag(event, rowIndex)}
             onPointerCancel={(event) => endDrag(event, rowIndex)}
           >
-            <div className="row-heading"><span>{logicalRow.title}<small>{logicalRow.subtitle}</small></span><em>{logicalRow.title}</em></div>
+            <h2 className="row-heading">{logicalRow.title}</h2>
             <div className="row-controls" aria-label={`Move row ${rowIndex + 1}`}>
               <button onClick={() => nudgeRow(rowIndex, -1)} aria-label={`Move row ${rowIndex + 1} left`}>←</button>
               <span>{String(rowIndex + 1).padStart(2, "0")}</span>
@@ -395,7 +394,7 @@ export default function Home() {
                       draggable={false}
                       data-product-id={work.product_id}
                     >
-                      <ProductImage product={work} alt={copyIndex === 2 ? work.media[0].alt : ""} loading={rowIndex > 1 ? "lazy" : "eager"} />
+                      <ProductImage product={work} alt={copyIndex === 2 ? work.media[0].alt : ""} loading={rowIndex > 1 ? "lazy" : "eager"} vendor={logicalRow.merchant_id} tokens={logicalRow.tokens} />
                       <span className="tile-meta"><b>{work.title}</b><em>{formatPrice(work.variants[0].retail_price.amount_minor, work.variants[0].retail_price.currency)}</em></span>
                     </button>
                   ))}
@@ -450,7 +449,7 @@ export default function Home() {
           <div className="family-rail" aria-label={`${marketplaceRows[selectedRow].title} collection`}>
             {family.slice(0, 2).map((work, index) => (
               <button className={`family-card family-left family-${index}`} key={work.product_id} onClick={() => setSelected(work)}>
-                <ProductImage product={work} alt={work.media[0].alt} />
+                <ProductImage product={work} alt={work.media[0].alt} vendor={marketplaceRows[selectedRow].merchant_id} tokens={marketplaceRows[selectedRow].tokens} />
               </button>
             ))}
           </div>
@@ -465,7 +464,7 @@ export default function Home() {
               <span>{previousMove.label === "Ascend" ? "↖" : "←"}</span><em>{previousMove.label}</em>
             </button>
             <button className="hero" onClick={advance} aria-label={stage === 1 ? `Preview website for ${selected.title}` : `Visit website for ${selected.title}`}>
-              <ProductImage product={selected} alt={selected.media[0].alt} />
+              <ProductImage product={selected} alt={selected.media[0].alt} loading="eager" vendor={marketplaceRows[selectedRow].merchant_id} tokens={marketplaceRows[selectedRow].tokens} />
               <span className="hero-index">{String(rows[selectedRow].findIndex((p) => p.product_id === selected.product_id) + 1).padStart(2, "0")}</span>
               <span className="hero-action">{stage === 1 ? "Product details" : "Catalog details"} <i>↗</i></span>
             </button>
@@ -503,7 +502,7 @@ export default function Home() {
           <div className="family-rail family-rail-right">
             {family.slice(2, 4).map((work, index) => (
               <button className={`family-card family-right family-${index}`} key={work.product_id} onClick={() => setSelected(work)}>
-                <ProductImage product={work} alt={work.media[0].alt} />
+                <ProductImage product={work} alt={work.media[0].alt} vendor={marketplaceRows[selectedRow].merchant_id} tokens={marketplaceRows[selectedRow].tokens} />
               </button>
             ))}
           </div>
@@ -531,7 +530,7 @@ export default function Home() {
               onClick={advance}
               aria-label={stage === 1 ? `Preview website for ${selected.title}` : `Visit website for ${selected.title}`}
             >
-              <ProductImage product={selected} alt={selected.media[0].alt} />
+              <ProductImage product={selected} alt={selected.media[0].alt} loading="eager" vendor={marketplaceRows[selectedRow].merchant_id} tokens={marketplaceRows[selectedRow].tokens} />
               <span className="mobile-hero-index">{String(rows[selectedRow].findIndex((p) => p.product_id === selected.product_id) + 1).padStart(2, "0")}</span>
               <span className="mobile-hero-action">{stage === 1 ? "Product details" : "Catalog details"} <i>↗</i></span>
             </button>
