@@ -3,12 +3,17 @@ import layoutData from "../data/catalog-sync/published-layout.v1.json";
 import groupData from "../data/styles/entrepreneur-groups.v1.json";
 import rowStyleData from "../data/styles/row-styles.v1.json";
 import manifestData from "../data/platform/marketplace-manifest.v1.json";
+import featuredPlacementData from "../data/presentation/featured-placements.v1.json";
+import { validateHeadingPlacements } from "./featured-placement.mjs";
 import { resolveAssetPath } from "./asset-path.mjs";
 
 export type Availability = "available" | "low_stock" | "sold_out" | "temporarily_unavailable" | "discontinued" | "preorder" | "unknown" | "mapping_error" | "suspended";
 export type Product = (typeof catalogData.products)[number];
 export type StyleTokens = Partial<{ color_background: string; color_surface: string; color_foreground: string; color_accent: string; font_heading: string; font_body: string; heading_size: string; heading_weight: number; heading_tracking: string; border_style: string; decoration: string; header_alignment: string; card_radius_px: number; rotunda_surface: string; vendor_image_fallback_background: string; vendor_image_fallback_foreground: string }>;
 export type MarketplaceRow = (typeof layoutData.rows)[number] & { merchant_id: string; products: Product[]; tokens: StyleTokens };
+
+const headingErrors = validateHeadingPlacements(layoutData.rows);
+if (headingErrors.length) throw new Error(`Invalid marketplace presentation: ${headingErrors.join("; ")}`);
 
 const productById = new Map(catalogData.products.map((product) => [product.product_id, product]));
 const groupById = new Map(groupData.groups.map((group) => [group.entrepreneur_group_id, group]));
@@ -54,4 +59,4 @@ export function isPurchasable(product: Product) {
   return product.active && product.variants[0].active && !["sold_out", "temporarily_unavailable", "discontinued", "mapping_error", "suspended", "unknown"].includes(status);
 }
 
-export { catalogData, layoutData, groupData, rowStyleData };
+export { catalogData, layoutData, groupData, rowStyleData, featuredPlacementData };

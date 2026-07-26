@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "marketplace_id": "marketplace_nume",
+  "fallback_storefront_id": "storefront_emadoku",
+  "placements": [
+    {
+      "placement_id": "placement_venasi_default_20260726",
+      "version": 1,
+      "storefront_id": "storefront_numenume",
+      "anchor_row_id": "row_nume_objects",
+      "effective_from": "2026-07-26T00:00:00Z",
+      "effective_until": null,
+      "priority": 100,
+      "geographic_scope": ["global"],
+      "campaign_owner": "nume-platform",
+      "contract_reference": null,
+      "status": "active",
+      "moderation_status": "approved",
+      "operator_approved_by": "operator:initial-configuration",
+      "audit_history": [{"event":"activated","at":"2026-07-26T00:00:00Z","actor":"operator:initial-configuration"}]
+    }
+  ]
+}
