@@ -1,0 +1,1025 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "catalog_emadoku",
+  "merchant_id": "merchant_emadoku",
+  "storefront_id": "storefront_emadoku",
+  "assigned_row_ids": [
+    "row_emadoku"
+  ],
+  "currency": "usd",
+  "revision": 1,
+  "updated_at": "2026-07-26T12:00:00Z",
+  "products": [
+    {
+      "product_id": "product_emadoku_01",
+      "storefront_id": "storefront_emadoku",
+      "title": "Sumi Linen Wrap",
+      "description": "Sumi Linen Wrap is heavyweight cotton shirt with a structured neckline and crisp graphic character.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "emadoku",
+        "atelier",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_emadoku_01",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Manga-editorial streetwear scene selected for Sumi Linen Wrap, with strong graphic contrast",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_emadoku_01_standard",
+          "sku": "EMADOKU-01",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 6400,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_emadoku_01",
+              "account_id": "acct_emadoku_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_emadoku_01",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_emadoku_01",
+            "provider_variant_id": "printify_demo_variant_emadoku_01",
+            "provider_sku": "PRINTIFY-emadoku-01",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_emadoku_01",
+          "account_id": "acct_emadoku_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_emadoku_01",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Emadoku Atelier"
+      },
+      "row_ids": [
+        "row_emadoku"
+      ]
+    },
+    {
+      "product_id": "product_emadoku_02",
+      "storefront_id": "storefront_emadoku",
+      "title": "Indigo Field Jacket",
+      "description": "Indigo Field Jacket is structured twill jacket with practical pockets and a clean everyday silhouette.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "emadoku",
+        "atelier",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_emadoku_02",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1520975954732-35dd22299614?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Manga-editorial streetwear scene selected for Indigo Field Jacket, with strong graphic contrast",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_emadoku_02_standard",
+          "sku": "EMADOKU-02",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 3800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_emadoku_02",
+              "account_id": "acct_emadoku_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_emadoku_02",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_emadoku_02",
+            "provider_variant_id": "printful_demo_variant_emadoku_02",
+            "provider_sku": "PRINTFUL-emadoku-02",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_emadoku_02",
+          "account_id": "acct_emadoku_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_emadoku_02",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Emadoku Atelier"
+      },
+      "row_ids": [
+        "row_emadoku"
+      ]
+    },
+    {
+      "product_id": "product_emadoku_03",
+      "storefront_id": "storefront_emadoku",
+      "title": "Folded Canvas Tote",
+      "description": "Folded Canvas Tote is durable canvas carryall with reinforced handles and an uncluttered monochrome finish.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "emadoku",
+        "atelier",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_emadoku_03",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Manga-editorial streetwear scene selected for Folded Canvas Tote, with strong graphic contrast",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_emadoku_03_standard",
+          "sku": "EMADOKU-03",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 5200,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "low_stock",
+            "source": "combined",
+            "quantity": 3,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_emadoku_03",
+              "account_id": "acct_emadoku_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_emadoku_03",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_emadoku_03",
+            "provider_variant_id": "manual_demo_variant_emadoku_03",
+            "provider_sku": "MANUAL-emadoku-03",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_emadoku_03",
+          "account_id": "acct_emadoku_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_emadoku_03",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Emadoku Atelier"
+      },
+      "row_ids": [
+        "row_emadoku"
+      ]
+    },
+    {
+      "product_id": "product_emadoku_04",
+      "storefront_id": "storefront_emadoku",
+      "title": "Moon Ink Scarf",
+      "description": "Moon Ink Scarf is soft woven scarf with an ink-dark field and a restrained contrasting edge.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "emadoku",
+        "atelier",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_emadoku_04",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Manga-editorial streetwear scene selected for Moon Ink Scarf, with strong graphic contrast",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_emadoku_04_standard",
+          "sku": "EMADOKU-04",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 7600,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_emadoku_04",
+              "account_id": "acct_emadoku_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_emadoku_04",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_emadoku_04",
+            "provider_variant_id": "printify_demo_variant_emadoku_04",
+            "provider_sku": "PRINTIFY-emadoku-04",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_emadoku_04",
+          "account_id": "acct_emadoku_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_emadoku_04",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Emadoku Atelier"
+      },
+      "row_ids": [
+        "row_emadoku"
+      ]
+    },
+    {
+      "product_id": "product_emadoku_05",
+      "storefront_id": "storefront_emadoku",
+      "title": "Kintsugi Studio Apron",
+      "description": "Kintsugi Studio Apron is hard-wearing studio apron with adjustable ties and generous tool pockets.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "emadoku",
+        "atelier",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_emadoku_05",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Manga-editorial streetwear scene selected for Kintsugi Studio Apron, with strong graphic contrast",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_emadoku_05_standard",
+          "sku": "EMADOKU-05",
+          "title": "Standard",
+          "active": false,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 8800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "sold_out",
+            "source": "combined",
+            "quantity": 0,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": "Demonstration availability state",
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_emadoku_05",
+              "account_id": "acct_emadoku_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_emadoku_05",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_emadoku_05",
+            "provider_variant_id": "printful_demo_variant_emadoku_05",
+            "provider_sku": "PRINTFUL-emadoku-05",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_emadoku_05",
+          "account_id": "acct_emadoku_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_emadoku_05",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Emadoku Atelier"
+      },
+      "row_ids": [
+        "row_emadoku"
+      ]
+    },
+    {
+      "product_id": "product_emadoku_06",
+      "storefront_id": "storefront_emadoku",
+      "title": "Quiet Pleat Trousers",
+      "description": "Quiet Pleat Trousers is relaxed woven trousers with precise pleats and an easy straight-leg cut.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "emadoku",
+        "atelier",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_emadoku_06",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Manga-editorial streetwear scene selected for Quiet Pleat Trousers, with strong graphic contrast",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_emadoku_06_standard",
+          "sku": "EMADOKU-06",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 4200,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_emadoku_06",
+              "account_id": "acct_emadoku_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_emadoku_06",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_emadoku_06",
+            "provider_variant_id": "manual_demo_variant_emadoku_06",
+            "provider_sku": "MANUAL-emadoku-06",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_emadoku_06",
+          "account_id": "acct_emadoku_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_emadoku_06",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Emadoku Atelier"
+      },
+      "row_ids": [
+        "row_emadoku"
+      ]
+    },
+    {
+      "product_id": "product_emadoku_07",
+      "storefront_id": "storefront_emadoku",
+      "title": "Washed Paper Shirt",
+      "description": "Washed Paper Shirt is heavyweight cotton shirt with a structured neckline and crisp graphic character.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "emadoku",
+        "atelier",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_emadoku_07",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Manga-editorial streetwear scene selected for Washed Paper Shirt, with strong graphic contrast",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_emadoku_07_standard",
+          "sku": "EMADOKU-07",
+          "title": "Standard",
+          "active": false,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 5800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "temporarily_unavailable",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": "Demonstration availability state",
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_emadoku_07",
+              "account_id": "acct_emadoku_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_emadoku_07",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_emadoku_07",
+            "provider_variant_id": "printify_demo_variant_emadoku_07",
+            "provider_sku": "PRINTIFY-emadoku-07",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_emadoku_07",
+          "account_id": "acct_emadoku_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_emadoku_07",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Emadoku Atelier"
+      },
+      "row_ids": [
+        "row_emadoku"
+      ]
+    },
+    {
+      "product_id": "product_emadoku_08",
+      "storefront_id": "storefront_emadoku",
+      "title": "Charcoal Travel Vest",
+      "description": "Charcoal Travel Vest is lightweight utility vest with layered pockets and a charcoal technical finish.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "emadoku",
+        "atelier",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_emadoku_08",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Manga-editorial streetwear scene selected for Charcoal Travel Vest, with strong graphic contrast",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_emadoku_08_standard",
+          "sku": "EMADOKU-08",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 9600,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_emadoku_08",
+              "account_id": "acct_emadoku_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_emadoku_08",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_emadoku_08",
+            "provider_variant_id": "printful_demo_variant_emadoku_08",
+            "provider_sku": "PRINTFUL-emadoku-08",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_emadoku_08",
+          "account_id": "acct_emadoku_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_emadoku_08",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Emadoku Atelier"
+      },
+      "row_ids": [
+        "row_emadoku"
+      ]
+    },
+    {
+      "product_id": "product_emadoku_09",
+      "storefront_id": "storefront_emadoku",
+      "title": "Moss Drawstring Bag",
+      "description": "Moss Drawstring Bag is durable canvas carryall with reinforced handles and an uncluttered monochrome finish.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "emadoku",
+        "atelier",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_emadoku_09",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Manga-editorial streetwear scene selected for Moss Drawstring Bag, with strong graphic contrast",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_emadoku_09_standard",
+          "sku": "EMADOKU-09",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 3400,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "low_stock",
+            "source": "combined",
+            "quantity": 3,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_emadoku_09",
+              "account_id": "acct_emadoku_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_emadoku_09",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_emadoku_09",
+            "provider_variant_id": "manual_demo_variant_emadoku_09",
+            "provider_sku": "MANUAL-emadoku-09",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_emadoku_09",
+          "account_id": "acct_emadoku_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_emadoku_09",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Emadoku Atelier"
+      },
+      "row_ids": [
+        "row_emadoku"
+      ]
+    },
+    {
+      "product_id": "product_emadoku_10",
+      "storefront_id": "storefront_emadoku",
+      "title": "Cloud Loom Coat",
+      "description": "Cloud Loom Coat is long structured coat cut for layering, with tactile cloth and decisive seam lines.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "emadoku",
+        "atelier",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_emadoku_10",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Manga-editorial streetwear scene selected for Cloud Loom Coat, with strong graphic contrast",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_emadoku_10_standard",
+          "sku": "EMADOKU-10",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 4800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_emadoku_10",
+              "account_id": "acct_emadoku_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_emadoku_10",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_emadoku_10",
+            "provider_variant_id": "printify_demo_variant_emadoku_10",
+            "provider_sku": "PRINTIFY-emadoku-10",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_emadoku_10",
+          "account_id": "acct_emadoku_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_emadoku_10",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Emadoku Atelier"
+      },
+      "row_ids": [
+        "row_emadoku"
+      ]
+    }
+  ],
+  "extensions": {}
+}

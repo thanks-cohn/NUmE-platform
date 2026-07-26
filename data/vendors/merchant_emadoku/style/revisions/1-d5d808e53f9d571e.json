@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "merchant_id": "merchant_emadoku",
+  "profiles": [
+    {
+      "style_profile_id": "style_emadoku",
+      "scope": "row",
+      "tokens": {
+        "color_background": "#171512",
+        "color_surface": "#f4efe3",
+        "color_foreground": "#f5efe2",
+        "color_accent": "#bd1f2d",
+        "font_heading": "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
+        "font_body": "Arial, Helvetica, sans-serif",
+        "heading_size": "clamp(24px, 3.4vw, 52px)",
+        "heading_weight": 900,
+        "heading_tracking": ".035em",
+        "border_style": "3px solid #171512",
+        "decoration": "manga",
+        "header_alignment": "left",
+        "card_radius_px": 0,
+        "rotunda_surface": "rgba(23,21,18,.96)",
+        "vendor_image_fallback_background": "#f4efe3",
+        "vendor_image_fallback_foreground": "#f5efe2"
+      }
+    }
+  ]
+}

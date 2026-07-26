@@ -1,0 +1,3047 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "catalog_nume",
+  "merchant_id": "merchant_nume",
+  "storefront_id": "storefront_numenume",
+  "assigned_row_ids": [
+    "row_nume_apparel",
+    "row_nume_objects",
+    "row_nume_editions"
+  ],
+  "currency": "usd",
+  "revision": 1,
+  "updated_at": "2026-07-26T12:00:00Z",
+  "products": [
+    {
+      "product_id": "product_nume_apparel_01",
+      "storefront_id": "storefront_numenume",
+      "title": "Axis Heavy Tee",
+      "description": "Axis Heavy Tee is heavyweight cotton shirt with a structured neckline and crisp graphic character.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "apparel",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_apparel_01",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Editorial fashion photograph selected for Axis Heavy Tee, styled with a professional studio sensibility",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_apparel_01_standard",
+          "sku": "NUME_APPAREL-01",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 3800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_apparel_01",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_nume_apparel_01",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_nume_apparel_01",
+            "provider_variant_id": "printful_demo_variant_nume_apparel_01",
+            "provider_sku": "PRINTFUL-nume_apparel-01",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_apparel_01",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_nume_apparel_01",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Apparel"
+      },
+      "row_ids": [
+        "row_nume_apparel"
+      ]
+    },
+    {
+      "product_id": "product_nume_apparel_02",
+      "storefront_id": "storefront_numenume",
+      "title": "Signal Knit Crew",
+      "description": "Signal Knit Crew is dense knit crew with a soft hand, ribbed edges, and a refined neutral finish.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "apparel",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_apparel_02",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1542060748-10c28b62716f?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Editorial fashion photograph selected for Signal Knit Crew, styled with a professional studio sensibility",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_apparel_02_standard",
+          "sku": "NUME_APPAREL-02",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 5200,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_apparel_02",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_nume_apparel_02",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_nume_apparel_02",
+            "provider_variant_id": "manual_demo_variant_nume_apparel_02",
+            "provider_sku": "MANUAL-nume_apparel-02",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_apparel_02",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_nume_apparel_02",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Apparel"
+      },
+      "row_ids": [
+        "row_nume_apparel"
+      ]
+    },
+    {
+      "product_id": "product_nume_apparel_03",
+      "storefront_id": "storefront_numenume",
+      "title": "Archive Hoodie 01",
+      "description": "Archive Hoodie 01 is substantial cotton hoodie with a relaxed fit and clean archival detailing.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "apparel",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_apparel_03",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1520975682031-a2868d27e319?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Editorial fashion photograph selected for Archive Hoodie 01, styled with a professional studio sensibility",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_apparel_03_standard",
+          "sku": "NUME_APPAREL-03",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 7600,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "low_stock",
+            "source": "combined",
+            "quantity": 3,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_apparel_03",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_nume_apparel_03",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_nume_apparel_03",
+            "provider_variant_id": "printify_demo_variant_nume_apparel_03",
+            "provider_sku": "PRINTIFY-nume_apparel-03",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_apparel_03",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_nume_apparel_03",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Apparel"
+      },
+      "row_ids": [
+        "row_nume_apparel"
+      ]
+    },
+    {
+      "product_id": "product_nume_apparel_04",
+      "storefront_id": "storefront_numenume",
+      "title": "Contour Work Shirt",
+      "description": "Contour Work Shirt is heavyweight cotton shirt with a structured neckline and crisp graphic character.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "apparel",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_apparel_04",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Editorial fashion photograph selected for Contour Work Shirt, styled with a professional studio sensibility",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_apparel_04_standard",
+          "sku": "NUME_APPAREL-04",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 8800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_apparel_04",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_nume_apparel_04",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_nume_apparel_04",
+            "provider_variant_id": "printful_demo_variant_nume_apparel_04",
+            "provider_sku": "PRINTFUL-nume_apparel-04",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_apparel_04",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_nume_apparel_04",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Apparel"
+      },
+      "row_ids": [
+        "row_nume_apparel"
+      ]
+    },
+    {
+      "product_id": "product_nume_apparel_05",
+      "storefront_id": "storefront_numenume",
+      "title": "Mono Track Trouser",
+      "description": "Mono Track Trouser is relaxed woven trousers with precise pleats and an easy straight-leg cut.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "apparel",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_apparel_05",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Editorial fashion photograph selected for Mono Track Trouser, styled with a professional studio sensibility",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_apparel_05_standard",
+          "sku": "NUME_APPAREL-05",
+          "title": "Standard",
+          "active": false,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 4200,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "sold_out",
+            "source": "combined",
+            "quantity": 0,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": "Demonstration availability state",
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_apparel_05",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_nume_apparel_05",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_nume_apparel_05",
+            "provider_variant_id": "manual_demo_variant_nume_apparel_05",
+            "provider_sku": "MANUAL-nume_apparel-05",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_apparel_05",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_nume_apparel_05",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Apparel"
+      },
+      "row_ids": [
+        "row_nume_apparel"
+      ]
+    },
+    {
+      "product_id": "product_nume_apparel_06",
+      "storefront_id": "storefront_numenume",
+      "title": "Index Coach Jacket",
+      "description": "Index Coach Jacket is structured twill jacket with practical pockets and a clean everyday silhouette.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "apparel",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_apparel_06",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Editorial fashion photograph selected for Index Coach Jacket, styled with a professional studio sensibility",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_apparel_06_standard",
+          "sku": "NUME_APPAREL-06",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 5800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_apparel_06",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_nume_apparel_06",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_nume_apparel_06",
+            "provider_variant_id": "printify_demo_variant_nume_apparel_06",
+            "provider_sku": "PRINTIFY-nume_apparel-06",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_apparel_06",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_nume_apparel_06",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Apparel"
+      },
+      "row_ids": [
+        "row_nume_apparel"
+      ]
+    },
+    {
+      "product_id": "product_nume_apparel_07",
+      "storefront_id": "storefront_numenume",
+      "title": "Field Rib Tank",
+      "description": "Field Rib Tank is heavyweight cotton shirt with a structured neckline and crisp graphic character.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "apparel",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_apparel_07",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Editorial fashion photograph selected for Field Rib Tank, styled with a professional studio sensibility",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_apparel_07_standard",
+          "sku": "NUME_APPAREL-07",
+          "title": "Standard",
+          "active": false,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 9600,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "temporarily_unavailable",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": "Demonstration availability state",
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_apparel_07",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_nume_apparel_07",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_nume_apparel_07",
+            "provider_variant_id": "printful_demo_variant_nume_apparel_07",
+            "provider_sku": "PRINTFUL-nume_apparel-07",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_apparel_07",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_nume_apparel_07",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Apparel"
+      },
+      "row_ids": [
+        "row_nume_apparel"
+      ]
+    },
+    {
+      "product_id": "product_nume_apparel_08",
+      "storefront_id": "storefront_numenume",
+      "title": "Orbit Cap",
+      "description": "Orbit Cap is cotton cap with an adjustable back and a crisp graphic profile.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "apparel",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_apparel_08",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Editorial fashion photograph selected for Orbit Cap, styled with a professional studio sensibility",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_apparel_08_standard",
+          "sku": "NUME_APPAREL-08",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 3400,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_apparel_08",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_nume_apparel_08",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_nume_apparel_08",
+            "provider_variant_id": "manual_demo_variant_nume_apparel_08",
+            "provider_sku": "MANUAL-nume_apparel-08",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_apparel_08",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_nume_apparel_08",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Apparel"
+      },
+      "row_ids": [
+        "row_nume_apparel"
+      ]
+    },
+    {
+      "product_id": "product_nume_apparel_09",
+      "storefront_id": "storefront_numenume",
+      "title": "Studio Chore Coat",
+      "description": "Studio Chore Coat is long structured coat cut for layering, with tactile cloth and decisive seam lines.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "apparel",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_apparel_09",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1536243298747-ea8874136d64?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Editorial fashion photograph selected for Studio Chore Coat, styled with a professional studio sensibility",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_apparel_09_standard",
+          "sku": "NUME_APPAREL-09",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 4800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "low_stock",
+            "source": "combined",
+            "quantity": 3,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_apparel_09",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_nume_apparel_09",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_nume_apparel_09",
+            "provider_variant_id": "printify_demo_variant_nume_apparel_09",
+            "provider_sku": "PRINTIFY-nume_apparel-09",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_apparel_09",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_nume_apparel_09",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Apparel"
+      },
+      "row_ids": [
+        "row_nume_apparel"
+      ]
+    },
+    {
+      "product_id": "product_nume_apparel_10",
+      "storefront_id": "storefront_numenume",
+      "title": "Edition Sock Pair",
+      "description": "Edition Sock Pair is comfortable rib-knit sock pair with reinforced heels and minimal edition marks.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "apparel",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_apparel_10",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Editorial fashion photograph selected for Edition Sock Pair, styled with a professional studio sensibility",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_apparel_10_standard",
+          "sku": "NUME_APPAREL-10",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 6400,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_apparel_10",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_nume_apparel_10",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_nume_apparel_10",
+            "provider_variant_id": "printful_demo_variant_nume_apparel_10",
+            "provider_sku": "PRINTFUL-nume_apparel-10",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_apparel_10",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_nume_apparel_10",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Apparel"
+      },
+      "row_ids": [
+        "row_nume_apparel"
+      ]
+    },
+    {
+      "product_id": "product_nume_objects_01",
+      "storefront_id": "storefront_numenume",
+      "title": "Column Table Lamp",
+      "description": "Column Table Lamp is compact architectural table lamp that casts a focused pool of warm task light.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "objects",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_objects_01",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Refined studio and lifestyle object photograph selected for Column Table Lamp",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_objects_01_standard",
+          "sku": "NUME_OBJECTS-01",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 5200,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_objects_01",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_nume_objects_01",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_nume_objects_01",
+            "provider_variant_id": "manual_demo_variant_nume_objects_01",
+            "provider_sku": "MANUAL-nume_objects-01",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_objects_01",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_nume_objects_01",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Objects"
+      },
+      "row_ids": [
+        "row_nume_objects"
+      ]
+    },
+    {
+      "product_id": "product_nume_objects_02",
+      "storefront_id": "storefront_numenume",
+      "title": "Arc Bookend Pair",
+      "description": "Arc Bookend Pair is weighty geometric bookends designed to organize a shelf with sculptural clarity.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "objects",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_objects_02",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Refined studio and lifestyle object photograph selected for Arc Bookend Pair",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_objects_02_standard",
+          "sku": "NUME_OBJECTS-02",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 7600,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_objects_02",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_nume_objects_02",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_nume_objects_02",
+            "provider_variant_id": "printify_demo_variant_nume_objects_02",
+            "provider_sku": "PRINTIFY-nume_objects-02",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_objects_02",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_nume_objects_02",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Objects"
+      },
+      "row_ids": [
+        "row_nume_objects"
+      ]
+    },
+    {
+      "product_id": "product_nume_objects_03",
+      "storefront_id": "storefront_numenume",
+      "title": "Grid Catchall Tray",
+      "description": "Grid Catchall Tray is low-profile catchall tray for keys and desk tools, finished in a calm stone tone.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "objects",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_objects_03",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1519947486511-46149fa0a254?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Refined studio and lifestyle object photograph selected for Grid Catchall Tray",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_objects_03_standard",
+          "sku": "NUME_OBJECTS-03",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 8800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "low_stock",
+            "source": "combined",
+            "quantity": 3,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_objects_03",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_nume_objects_03",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_nume_objects_03",
+            "provider_variant_id": "printful_demo_variant_nume_objects_03",
+            "provider_sku": "PRINTFUL-nume_objects-03",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_objects_03",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_nume_objects_03",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Objects"
+      },
+      "row_ids": [
+        "row_nume_objects"
+      ]
+    },
+    {
+      "product_id": "product_nume_objects_04",
+      "storefront_id": "storefront_numenume",
+      "title": "Volume Ceramic Cup",
+      "description": "Volume Ceramic Cup is glazed ceramic mug with a comfortable handle and a playful, high-contrast finish.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "objects",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_objects_04",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Refined studio and lifestyle object photograph selected for Volume Ceramic Cup",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_objects_04_standard",
+          "sku": "NUME_OBJECTS-04",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 4200,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_objects_04",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_nume_objects_04",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_nume_objects_04",
+            "provider_variant_id": "manual_demo_variant_nume_objects_04",
+            "provider_sku": "MANUAL-nume_objects-04",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_objects_04",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_nume_objects_04",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Objects"
+      },
+      "row_ids": [
+        "row_nume_objects"
+      ]
+    },
+    {
+      "product_id": "product_nume_objects_05",
+      "storefront_id": "storefront_numenume",
+      "title": "Plane Desk Mat",
+      "description": "Plane Desk Mat is generous desk mat with a smooth work surface and precisely finished edges.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "objects",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_objects_05",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Refined studio and lifestyle object photograph selected for Plane Desk Mat",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_objects_05_standard",
+          "sku": "NUME_OBJECTS-05",
+          "title": "Standard",
+          "active": false,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 5800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "sold_out",
+            "source": "combined",
+            "quantity": 0,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": "Demonstration availability state",
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_objects_05",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_nume_objects_05",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_nume_objects_05",
+            "provider_variant_id": "printify_demo_variant_nume_objects_05",
+            "provider_sku": "PRINTIFY-nume_objects-05",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_objects_05",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_nume_objects_05",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Objects"
+      },
+      "row_ids": [
+        "row_nume_objects"
+      ]
+    },
+    {
+      "product_id": "product_nume_objects_06",
+      "storefront_id": "storefront_numenume",
+      "title": "Index Steel Bottle",
+      "description": "Index Steel Bottle is reusable steel bottle with a leak-resistant cap and a brushed metallic body.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "objects",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_objects_06",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Refined studio and lifestyle object photograph selected for Index Steel Bottle",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_objects_06_standard",
+          "sku": "NUME_OBJECTS-06",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 9600,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_objects_06",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_nume_objects_06",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_nume_objects_06",
+            "provider_variant_id": "printful_demo_variant_nume_objects_06",
+            "provider_sku": "PRINTFUL-nume_objects-06",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_objects_06",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_nume_objects_06",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Objects"
+      },
+      "row_ids": [
+        "row_nume_objects"
+      ]
+    },
+    {
+      "product_id": "product_nume_objects_07",
+      "storefront_id": "storefront_numenume",
+      "title": "Halo Incense Stand",
+      "description": "Halo Incense Stand is minimal incense holder designed to catch ash in a compact sculptural dish.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "objects",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_objects_07",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Refined studio and lifestyle object photograph selected for Halo Incense Stand",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_objects_07_standard",
+          "sku": "NUME_OBJECTS-07",
+          "title": "Standard",
+          "active": false,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 3400,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "temporarily_unavailable",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": "Demonstration availability state",
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_objects_07",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_nume_objects_07",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_nume_objects_07",
+            "provider_variant_id": "manual_demo_variant_nume_objects_07",
+            "provider_sku": "MANUAL-nume_objects-07",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_objects_07",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_nume_objects_07",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Objects"
+      },
+      "row_ids": [
+        "row_nume_objects"
+      ]
+    },
+    {
+      "product_id": "product_nume_objects_08",
+      "storefront_id": "storefront_numenume",
+      "title": "Fold Canvas Basket",
+      "description": "Fold Canvas Basket is foldable canvas basket with reinforced seams for calm, flexible home storage.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "objects",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_objects_08",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Refined studio and lifestyle object photograph selected for Fold Canvas Basket",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_objects_08_standard",
+          "sku": "NUME_OBJECTS-08",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 4800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_objects_08",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_nume_objects_08",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_nume_objects_08",
+            "provider_variant_id": "printify_demo_variant_nume_objects_08",
+            "provider_sku": "PRINTIFY-nume_objects-08",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_objects_08",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_nume_objects_08",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Objects"
+      },
+      "row_ids": [
+        "row_nume_objects"
+      ]
+    },
+    {
+      "product_id": "product_nume_objects_09",
+      "storefront_id": "storefront_numenume",
+      "title": "Relay Wall Clock",
+      "description": "Relay Wall Clock is quiet wall clock with bold hands and a highly legible architectural face.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "objects",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_objects_09",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Refined studio and lifestyle object photograph selected for Relay Wall Clock",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_objects_09_standard",
+          "sku": "NUME_OBJECTS-09",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 6400,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "low_stock",
+            "source": "combined",
+            "quantity": 3,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_objects_09",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_nume_objects_09",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_nume_objects_09",
+            "provider_variant_id": "printful_demo_variant_nume_objects_09",
+            "provider_sku": "PRINTFUL-nume_objects-09",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_objects_09",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_nume_objects_09",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Objects"
+      },
+      "row_ids": [
+        "row_nume_objects"
+      ]
+    },
+    {
+      "product_id": "product_nume_objects_10",
+      "storefront_id": "storefront_numenume",
+      "title": "Form Wool Cushion",
+      "description": "Form Wool Cushion is wool-blend cushion with a tactile weave and supportive feather-soft fill.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "objects",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_objects_10",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Refined studio and lifestyle object photograph selected for Form Wool Cushion",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_objects_10_standard",
+          "sku": "NUME_OBJECTS-10",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 3800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_objects_10",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_nume_objects_10",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_nume_objects_10",
+            "provider_variant_id": "manual_demo_variant_nume_objects_10",
+            "provider_sku": "MANUAL-nume_objects-10",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_objects_10",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_nume_objects_10",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Objects"
+      },
+      "row_ids": [
+        "row_nume_objects"
+      ]
+    },
+    {
+      "product_id": "product_nume_editions_01",
+      "storefront_id": "storefront_numenume",
+      "title": "Issue 01: Beginnings",
+      "description": "Issue 01: Beginnings is carefully bound printed edition featuring tactile paper and image-led editorial layouts.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "editions",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_editions_01",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Art books and printed design matter photograph selected for Issue 01: Beginnings",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_editions_01_standard",
+          "sku": "NUME_EDITIONS-01",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 7600,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_editions_01",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_nume_editions_01",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_nume_editions_01",
+            "provider_variant_id": "printify_demo_variant_nume_editions_01",
+            "provider_sku": "PRINTIFY-nume_editions-01",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_editions_01",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_nume_editions_01",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Editions"
+      },
+      "row_ids": [
+        "row_nume_editions"
+      ]
+    },
+    {
+      "product_id": "product_nume_editions_02",
+      "storefront_id": "storefront_numenume",
+      "title": "Chromatic Field Print",
+      "description": "Chromatic Field Print is crisp art print on heavyweight matte stock, composed for a modern interior.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "editions",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_editions_02",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Art books and printed design matter photograph selected for Chromatic Field Print",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_editions_02_standard",
+          "sku": "NUME_EDITIONS-02",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 8800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_editions_02",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_nume_editions_02",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_nume_editions_02",
+            "provider_variant_id": "printful_demo_variant_nume_editions_02",
+            "provider_sku": "PRINTFUL-nume_editions-02",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_editions_02",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_nume_editions_02",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Editions"
+      },
+      "row_ids": [
+        "row_nume_editions"
+      ]
+    },
+    {
+      "product_id": "product_nume_editions_03",
+      "storefront_id": "storefront_numenume",
+      "title": "Structures Card Set",
+      "description": "Structures Card Set is boxed card set printed on substantial uncoated stock for notes, prompts, or display.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "editions",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_editions_03",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Art books and printed design matter photograph selected for Structures Card Set",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_editions_03_standard",
+          "sku": "NUME_EDITIONS-03",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 4200,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "low_stock",
+            "source": "combined",
+            "quantity": 3,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_editions_03",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_nume_editions_03",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_nume_editions_03",
+            "provider_variant_id": "manual_demo_variant_nume_editions_03",
+            "provider_sku": "MANUAL-nume_editions-03",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_editions_03",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_nume_editions_03",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Editions"
+      },
+      "row_ids": [
+        "row_nume_editions"
+      ]
+    },
+    {
+      "product_id": "product_nume_editions_04",
+      "storefront_id": "storefront_numenume",
+      "title": "Material Notes Folio",
+      "description": "Material Notes Folio is lay-flat notebook with smooth paper, durable binding, and a vivid graphic cover.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "editions",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_editions_04",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Art books and printed design matter photograph selected for Material Notes Folio",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_editions_04_standard",
+          "sku": "NUME_EDITIONS-04",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 5800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_editions_04",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_nume_editions_04",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_nume_editions_04",
+            "provider_variant_id": "printify_demo_variant_nume_editions_04",
+            "provider_sku": "PRINTIFY-nume_editions-04",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_editions_04",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_nume_editions_04",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Editions"
+      },
+      "row_ids": [
+        "row_nume_editions"
+      ]
+    },
+    {
+      "product_id": "product_nume_editions_05",
+      "storefront_id": "storefront_numenume",
+      "title": "Light Study Risograph",
+      "description": "Light Study Risograph is crisp art print on heavyweight matte stock, composed for a modern interior.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "editions",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_editions_05",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Art books and printed design matter photograph selected for Light Study Risograph",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_editions_05_standard",
+          "sku": "NUME_EDITIONS-05",
+          "title": "Standard",
+          "active": false,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 9600,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "sold_out",
+            "source": "combined",
+            "quantity": 0,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": "Demonstration availability state",
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_editions_05",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_nume_editions_05",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_nume_editions_05",
+            "provider_variant_id": "printful_demo_variant_nume_editions_05",
+            "provider_sku": "PRINTFUL-nume_editions-05",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_editions_05",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_nume_editions_05",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Editions"
+      },
+      "row_ids": [
+        "row_nume_editions"
+      ]
+    },
+    {
+      "product_id": "product_nume_editions_06",
+      "storefront_id": "storefront_numenume",
+      "title": "NUME Monograph 2026",
+      "description": "NUME Monograph 2026 is carefully bound printed edition featuring tactile paper and image-led editorial layouts.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "editions",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_editions_06",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1473755504818-b72b6dfdc226?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Art books and printed design matter photograph selected for NUME Monograph 2026",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_editions_06_standard",
+          "sku": "NUME_EDITIONS-06",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 3400,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_editions_06",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_nume_editions_06",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_nume_editions_06",
+            "provider_variant_id": "manual_demo_variant_nume_editions_06",
+            "provider_sku": "MANUAL-nume_editions-06",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_editions_06",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_nume_editions_06",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Editions"
+      },
+      "row_ids": [
+        "row_nume_editions"
+      ]
+    },
+    {
+      "product_id": "product_nume_editions_07",
+      "storefront_id": "storefront_numenume",
+      "title": "Object Index Poster",
+      "description": "Object Index Poster is crisp art print on heavyweight matte stock, composed for a modern interior.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "editions",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_editions_07",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1535905557558-afc4877a26fc?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Art books and printed design matter photograph selected for Object Index Poster",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_editions_07_standard",
+          "sku": "NUME_EDITIONS-07",
+          "title": "Standard",
+          "active": false,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 4800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "temporarily_unavailable",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": "Demonstration availability state",
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_editions_07",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_nume_editions_07",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_nume_editions_07",
+            "provider_variant_id": "printify_demo_variant_nume_editions_07",
+            "provider_sku": "PRINTIFY-nume_editions-07",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_editions_07",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_nume_editions_07",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Editions"
+      },
+      "row_ids": [
+        "row_nume_editions"
+      ]
+    },
+    {
+      "product_id": "product_nume_editions_08",
+      "storefront_id": "storefront_numenume",
+      "title": "Quiet Systems Zine",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "editions",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_editions_08",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Art books and printed design matter photograph selected for Quiet Systems Zine",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_editions_08_standard",
+          "sku": "NUME_EDITIONS-08",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 6400,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_editions_08",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_nume_editions_08",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_nume_editions_08",
+            "provider_variant_id": "printful_demo_variant_nume_editions_08",
+            "provider_sku": "PRINTFUL-nume_editions-08",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_editions_08",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_nume_editions_08",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Editions"
+      },
+      "description": "Quiet Systems Zine is compact independently printed zine with tactile paper, staple binding, and a quiet systems essay.",
+      "row_ids": [
+        "row_nume_editions"
+      ]
+    },
+    {
+      "product_id": "product_nume_editions_09",
+      "storefront_id": "storefront_numenume",
+      "title": "Edition 03: Movement",
+      "description": "Edition 03: Movement is carefully bound printed edition featuring tactile paper and image-led editorial layouts.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "editions",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_editions_09",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Art books and printed design matter photograph selected for Edition 03: Movement",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_editions_09_standard",
+          "sku": "NUME_EDITIONS-09",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 3800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "low_stock",
+            "source": "combined",
+            "quantity": 3,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_editions_09",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_nume_editions_09",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_nume_editions_09",
+            "provider_variant_id": "manual_demo_variant_nume_editions_09",
+            "provider_sku": "MANUAL-nume_editions-09",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_editions_09",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_nume_editions_09",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Editions"
+      },
+      "row_ids": [
+        "row_nume_editions"
+      ]
+    },
+    {
+      "product_id": "product_nume_editions_10",
+      "storefront_id": "storefront_numenume",
+      "title": "Archive Print No. 10",
+      "description": "Archive Print No. 10 is crisp art print on heavyweight matte stock, composed for a modern interior.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "nume",
+        "editions",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_nume_editions_10",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Art books and printed design matter photograph selected for Archive Print No. 10",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_nume_editions_10_standard",
+          "sku": "NUME_EDITIONS-10",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 5200,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_nume_editions_10",
+              "account_id": "acct_nume_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_nume_editions_10",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_nume_editions_10",
+            "provider_variant_id": "printify_demo_variant_nume_editions_10",
+            "provider_sku": "PRINTIFY-nume_editions-10",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_nume_editions_10",
+          "account_id": "acct_nume_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_nume_editions_10",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "NUME Editions"
+      },
+      "row_ids": [
+        "row_nume_editions"
+      ]
+    }
+  ],
+  "extensions": {}
+}

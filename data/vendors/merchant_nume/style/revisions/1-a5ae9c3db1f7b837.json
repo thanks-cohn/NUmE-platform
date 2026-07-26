@@ -1,5 +1,6 @@
 {
   "schema_version": "1.0.0",
+  "merchant_id": "merchant_nume",
   "groups": [
     {
       "entrepreneur_group_id": "group_numenume",
@@ -22,6 +23,35 @@
         "rotunda_surface": "rgba(233,229,222,.97)",
         "vendor_image_fallback_background": "#faf8f3",
         "vendor_image_fallback_foreground": "#171717"
+      }
+    }
+  ],
+  "profiles": [
+    {
+      "style_profile_id": "style_nume_apparel",
+      "scope": "row",
+      "tokens": {
+        "color_accent": "#485d59",
+        "vendor_image_fallback_background": "#171717",
+        "vendor_image_fallback_foreground": "#ffffff"
+      }
+    },
+    {
+      "style_profile_id": "style_nume_objects",
+      "scope": "row",
+      "tokens": {
+        "color_accent": "#826f4d",
+        "vendor_image_fallback_background": "#171717",
+        "vendor_image_fallback_foreground": "#ffffff"
+      }
+    },
+    {
+      "style_profile_id": "style_nume_editions",
+      "scope": "row",
+      "tokens": {
+        "color_accent": "#515e72",
+        "vendor_image_fallback_background": "#171717",
+        "vendor_image_fallback_foreground": "#ffffff"
       }
     }
   ]

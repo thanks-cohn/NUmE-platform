@@ -1,10 +1,76 @@
 {
   "schema_version": "1.0.0",
   "profiles": [
-    {"style_profile_id":"style_emadoku","scope":"row","tokens":{"color_background":"#171512","color_surface":"#f4efe3","color_foreground":"#f5efe2","color_accent":"#bd1f2d","font_heading":"Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif","font_body":"Arial, Helvetica, sans-serif","heading_size":"clamp(24px, 3.4vw, 52px)","heading_weight":900,"heading_tracking":".035em","border_style":"3px solid #171512","decoration":"manga","header_alignment":"left","card_radius_px":0,"rotunda_surface":"rgba(23,21,18,.96)"}},
-    {"style_profile_id":"style_nume_apparel","scope":"row","tokens":{"color_accent":"#485d59"}},
-    {"style_profile_id":"style_nume_objects","scope":"row","tokens":{"color_accent":"#826f4d"}},
-    {"style_profile_id":"style_nume_editions","scope":"row","tokens":{"color_accent":"#515e72"}},
-    {"style_profile_id":"style_qa","scope":"row","tokens":{"color_background":"#4b063d","color_surface":"#ffd6ee","color_foreground":"#fff7fc","color_accent":"#ff4fca","font_heading":"'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif","font_body":"'Trebuchet MS', Arial, sans-serif","heading_size":"clamp(25px, 3.6vw, 54px)","heading_weight":800,"heading_tracking":".025em","border_style":"2px solid #ff8ed8","decoration":"sparkle","header_alignment":"right","card_radius_px":26,"rotunda_surface":"rgba(75,6,61,.96)"}}
+    {
+      "style_profile_id": "style_emadoku",
+      "scope": "row",
+      "tokens": {
+        "color_background": "#171512",
+        "color_surface": "#f4efe3",
+        "color_foreground": "#f5efe2",
+        "color_accent": "#bd1f2d",
+        "font_heading": "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
+        "font_body": "Arial, Helvetica, sans-serif",
+        "heading_size": "clamp(24px, 3.4vw, 52px)",
+        "heading_weight": 900,
+        "heading_tracking": ".035em",
+        "border_style": "3px solid #171512",
+        "decoration": "manga",
+        "header_alignment": "left",
+        "card_radius_px": 0,
+        "rotunda_surface": "rgba(23,21,18,.96)",
+        "vendor_image_fallback_background": "#f4efe3",
+        "vendor_image_fallback_foreground": "#f5efe2"
+      }
+    },
+    {
+      "style_profile_id": "style_nume_apparel",
+      "scope": "row",
+      "tokens": {
+        "color_accent": "#485d59",
+        "vendor_image_fallback_background": "#171717",
+        "vendor_image_fallback_foreground": "#ffffff"
+      }
+    },
+    {
+      "style_profile_id": "style_nume_objects",
+      "scope": "row",
+      "tokens": {
+        "color_accent": "#826f4d",
+        "vendor_image_fallback_background": "#171717",
+        "vendor_image_fallback_foreground": "#ffffff"
+      }
+    },
+    {
+      "style_profile_id": "style_nume_editions",
+      "scope": "row",
+      "tokens": {
+        "color_accent": "#515e72",
+        "vendor_image_fallback_background": "#171717",
+        "vendor_image_fallback_foreground": "#ffffff"
+      }
+    },
+    {
+      "style_profile_id": "style_qa",
+      "scope": "row",
+      "tokens": {
+        "color_background": "#4b063d",
+        "color_surface": "#ffd6ee",
+        "color_foreground": "#fff7fc",
+        "color_accent": "#ff4fca",
+        "font_heading": "'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif",
+        "font_body": "'Trebuchet MS', Arial, sans-serif",
+        "heading_size": "clamp(25px, 3.6vw, 54px)",
+        "heading_weight": 800,
+        "heading_tracking": ".025em",
+        "border_style": "2px solid #ff8ed8",
+        "decoration": "sparkle",
+        "header_alignment": "right",
+        "card_radius_px": 26,
+        "rotunda_surface": "rgba(75,6,61,.96)",
+        "vendor_image_fallback_background": "#ffd6ee",
+        "vendor_image_fallback_foreground": "#fff7fc"
+      }
+    }
   ]
 }

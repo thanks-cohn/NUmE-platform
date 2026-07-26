@@ -1,0 +1,1025 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "catalog_qa",
+  "merchant_id": "merchant_qa",
+  "storefront_id": "storefront_qa",
+  "assigned_row_ids": [
+    "row_qa"
+  ],
+  "currency": "usd",
+  "revision": 1,
+  "updated_at": "2026-07-26T12:00:00Z",
+  "products": [
+    {
+      "product_id": "product_qa_01",
+      "storefront_id": "storefront_qa",
+      "title": "Question Mark Notebook",
+      "description": "Question Mark Notebook is lay-flat notebook with smooth paper, durable binding, and a vivid graphic cover.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "qa",
+        "supply",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_qa_01",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Playful pink fashion portrait selected for Question Mark Notebook, with a glamorous colorful mood",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_qa_01_standard",
+          "sku": "QA-01",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 8800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_qa_01",
+              "account_id": "acct_qa_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_qa_01",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_qa_01",
+            "provider_variant_id": "printful_demo_variant_qa_01",
+            "provider_sku": "PRINTFUL-qa-01",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_qa_01",
+          "account_id": "acct_qa_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_qa_01",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Q&A Supply"
+      },
+      "row_ids": [
+        "row_qa"
+      ]
+    },
+    {
+      "product_id": "product_qa_02",
+      "storefront_id": "storefront_qa",
+      "title": "Answer Desk Planner",
+      "description": "Answer Desk Planner is undated desk planner with spacious weekly grids and considered goal-setting pages.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "qa",
+        "supply",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_qa_02",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Playful pink fashion portrait selected for Answer Desk Planner, with a glamorous colorful mood",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_qa_02_standard",
+          "sku": "QA-02",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 4200,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_qa_02",
+              "account_id": "acct_qa_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_qa_02",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_qa_02",
+            "provider_variant_id": "manual_demo_variant_qa_02",
+            "provider_sku": "MANUAL-qa-02",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_qa_02",
+          "account_id": "acct_qa_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_qa_02",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Q&A Supply"
+      },
+      "row_ids": [
+        "row_qa"
+      ]
+    },
+    {
+      "product_id": "product_qa_03",
+      "storefront_id": "storefront_qa",
+      "title": "Inquiry Pencil Set",
+      "description": "Inquiry Pencil Set is coordinated pencil set with smooth graphite cores and glossy pink lacquer.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "qa",
+        "supply",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_qa_03",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Playful pink fashion portrait selected for Inquiry Pencil Set, with a glamorous colorful mood",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_qa_03_standard",
+          "sku": "QA-03",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 5800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "low_stock",
+            "source": "combined",
+            "quantity": 3,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_qa_03",
+              "account_id": "acct_qa_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_qa_03",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_qa_03",
+            "provider_variant_id": "printify_demo_variant_qa_03",
+            "provider_sku": "PRINTIFY-qa-03",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_qa_03",
+          "account_id": "acct_qa_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_qa_03",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Q&A Supply"
+      },
+      "row_ids": [
+        "row_qa"
+      ]
+    },
+    {
+      "product_id": "product_qa_04",
+      "storefront_id": "storefront_qa",
+      "title": "Dialogue Ceramic Mug",
+      "description": "Dialogue Ceramic Mug is glazed ceramic mug with a comfortable handle and a playful, high-contrast finish.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "qa",
+        "supply",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_qa_04",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Playful pink fashion portrait selected for Dialogue Ceramic Mug, with a glamorous colorful mood",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_qa_04_standard",
+          "sku": "QA-04",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 9600,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_qa_04",
+              "account_id": "acct_qa_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_qa_04",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_qa_04",
+            "provider_variant_id": "printful_demo_variant_qa_04",
+            "provider_sku": "PRINTFUL-qa-04",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_qa_04",
+          "account_id": "acct_qa_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_qa_04",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Q&A Supply"
+      },
+      "row_ids": [
+        "row_qa"
+      ]
+    },
+    {
+      "product_id": "product_qa_05",
+      "storefront_id": "storefront_qa",
+      "title": "Prompt Canvas Pouch",
+      "description": "Prompt Canvas Pouch is soft zip pouch sized for cosmetics or stationery, with a bright lined interior.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "qa",
+        "supply",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_qa_05",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Playful pink fashion portrait selected for Prompt Canvas Pouch, with a glamorous colorful mood",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_qa_05_standard",
+          "sku": "QA-05",
+          "title": "Standard",
+          "active": false,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 3400,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "sold_out",
+            "source": "combined",
+            "quantity": 0,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": "Demonstration availability state",
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_qa_05",
+              "account_id": "acct_qa_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_qa_05",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_qa_05",
+            "provider_variant_id": "manual_demo_variant_qa_05",
+            "provider_sku": "MANUAL-qa-05",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_qa_05",
+          "account_id": "acct_qa_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_qa_05",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Q&A Supply"
+      },
+      "row_ids": [
+        "row_qa"
+      ]
+    },
+    {
+      "product_id": "product_qa_06",
+      "storefront_id": "storefront_qa",
+      "title": "Footnote Market Tote",
+      "description": "Footnote Market Tote is roomy cotton tote with reinforced straps and a playful editorial color treatment.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "qa",
+        "supply",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_qa_06",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Playful pink fashion portrait selected for Footnote Market Tote, with a glamorous colorful mood",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_qa_06_standard",
+          "sku": "QA-06",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 4800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_qa_06",
+              "account_id": "acct_qa_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_qa_06",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_qa_06",
+            "provider_variant_id": "printify_demo_variant_qa_06",
+            "provider_sku": "PRINTIFY-qa-06",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_qa_06",
+          "account_id": "acct_qa_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_qa_06",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Q&A Supply"
+      },
+      "row_ids": [
+        "row_qa"
+      ]
+    },
+    {
+      "product_id": "product_qa_07",
+      "storefront_id": "storefront_qa",
+      "title": "Open Question Tee",
+      "description": "Open Question Tee is heavyweight cotton shirt with a structured neckline and crisp graphic character.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "qa",
+        "supply",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_qa_07",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Playful pink fashion portrait selected for Open Question Tee, with a glamorous colorful mood",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_qa_07_standard",
+          "sku": "QA-07",
+          "title": "Standard",
+          "active": false,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 6400,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "temporarily_unavailable",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": "Demonstration availability state",
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_qa_07",
+              "account_id": "acct_qa_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_qa_07",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_qa_07",
+            "provider_variant_id": "printful_demo_variant_qa_07",
+            "provider_sku": "PRINTFUL-qa-07",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_qa_07",
+          "account_id": "acct_qa_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_qa_07",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Q&A Supply"
+      },
+      "row_ids": [
+        "row_qa"
+      ]
+    },
+    {
+      "product_id": "product_qa_08",
+      "storefront_id": "storefront_qa",
+      "title": "Conversation Cap",
+      "description": "Conversation Cap is cotton cap with an adjustable back and a crisp graphic profile.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "qa",
+        "supply",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_qa_08",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Playful pink fashion portrait selected for Conversation Cap, with a glamorous colorful mood",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_qa_08_standard",
+          "sku": "QA-08",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 3800,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_qa_08",
+              "account_id": "acct_qa_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "other",
+              "id": "manual_demo_variant_qa_08",
+              "account_id": null,
+              "provider_id": "provider_manual",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "manual_demo_product_qa_08",
+            "provider_variant_id": "manual_demo_variant_qa_08",
+            "provider_sku": "MANUAL-qa-08",
+            "extensions": {
+              "manual.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_qa_08",
+          "account_id": "acct_qa_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "other",
+          "id": "manual_demo_product_qa_08",
+          "account_id": null,
+          "provider_id": "provider_manual",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Q&A Supply"
+      },
+      "row_ids": [
+        "row_qa"
+      ]
+    },
+    {
+      "product_id": "product_qa_09",
+      "storefront_id": "storefront_qa",
+      "title": "Why Poster Edition",
+      "description": "Why Poster Edition is crisp art print on heavyweight matte stock, composed for a modern interior.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "qa",
+        "supply",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_qa_09",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Playful pink fashion portrait selected for Why Poster Edition, with a glamorous colorful mood",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_qa_09_standard",
+          "sku": "QA-09",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 5200,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "low_stock",
+            "source": "combined",
+            "quantity": 3,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_qa_09",
+              "account_id": "acct_qa_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printify_variant",
+              "id": "printify_demo_variant_qa_09",
+              "account_id": null,
+              "provider_id": "provider_printify_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "printify",
+            "provider_product_id": "printify_demo_product_qa_09",
+            "provider_variant_id": "printify_demo_variant_qa_09",
+            "provider_sku": "PRINTIFY-qa-09",
+            "extensions": {
+              "printify.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_qa_09",
+          "account_id": "acct_qa_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printify_product",
+          "id": "printify_demo_product_qa_09",
+          "account_id": null,
+          "provider_id": "provider_printify_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Q&A Supply"
+      },
+      "row_ids": [
+        "row_qa"
+      ]
+    },
+    {
+      "product_id": "product_qa_10",
+      "storefront_id": "storefront_qa",
+      "title": "Field Answer Cards",
+      "description": "Field Answer Cards is boxed card set printed on substantial uncoated stock for notes, prompts, or display.",
+      "active": true,
+      "status": "active",
+      "tags": [
+        "qa",
+        "supply",
+        "demonstration"
+      ],
+      "media": [
+        {
+          "media_id": "media_qa_10",
+          "kind": "public_https",
+          "url": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1200&q=85",
+          "alt": "Playful pink fashion portrait selected for Field Answer Cards, with a glamorous colorful mood",
+          "sort_order": 0,
+          "extensions": {}
+        }
+      ],
+      "variants": [
+        {
+          "variant_id": "variant_qa_10_standard",
+          "sku": "QA-10",
+          "title": "Standard",
+          "active": true,
+          "options": {
+            "edition": "Standard"
+          },
+          "retail_price": {
+            "amount_minor": 7600,
+            "currency": "usd"
+          },
+          "availability": {
+            "status": "available",
+            "source": "combined",
+            "quantity": null,
+            "checked_at": "2026-07-25T10:00:00Z",
+            "reason": null,
+            "allow_backorder": false
+          },
+          "external_references": [
+            {
+              "system": "stripe_price",
+              "id": "price_demo_qa_10",
+              "account_id": "acct_qa_test",
+              "provider_id": null,
+              "url": null
+            },
+            {
+              "system": "printful_variant",
+              "id": "printful_demo_variant_qa_10",
+              "account_id": null,
+              "provider_id": "provider_printful_demo",
+              "url": null
+            }
+          ],
+          "extensions": {
+            "nume.checkout_state": "demo_only"
+          },
+          "currency": "usd",
+          "fulfillment_mapping": {
+            "provider": "manual",
+            "provider_product_id": "printful_demo_product_qa_10",
+            "provider_variant_id": "printful_demo_variant_qa_10",
+            "provider_sku": "PRINTFUL-qa-10",
+            "extensions": {
+              "printful.demo_mapping": true
+            }
+          },
+          "created_at": "2026-07-20T09:00:00Z",
+          "updated_at": "2026-07-25T10:00:00Z"
+        }
+      ],
+      "external_references": [
+        {
+          "system": "stripe_product",
+          "id": "prod_demo_qa_10",
+          "account_id": "acct_qa_test",
+          "provider_id": null,
+          "url": null
+        },
+        {
+          "system": "printful_product",
+          "id": "printful_demo_product_qa_10",
+          "account_id": null,
+          "provider_id": "provider_printful_demo",
+          "url": null
+        }
+      ],
+      "created_at": "2026-07-20T09:00:00Z",
+      "updated_at": "2026-07-25T10:00:00Z",
+      "extensions": {
+        "nume.collection": "Q&A Supply"
+      },
+      "row_ids": [
+        "row_qa"
+      ]
+    }
+  ],
+  "extensions": {}
+}
