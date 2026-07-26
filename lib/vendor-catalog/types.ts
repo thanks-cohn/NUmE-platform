@@ -1,0 +1,11 @@
+export type AvailabilityState = "available"|"low_stock"|"sold_out"|"temporarily_unavailable"|"preorder"|"discontinued"|"unknown"|"mapping_error"|"suspended";
+export interface Money { amount_minor:number; currency:string }
+export interface ExternalReference { system:string; id:string; account_id?:string|null; active?:boolean; historical_ids?:string[]; extensions?:Record<string,unknown> }
+export interface CatalogMedia { media_id:string; kind:"local"|"public_https"|"managed"|"provider"; url:string; alt:string; sort_order:number; extensions:Record<string,unknown> }
+export interface Availability { status:AvailabilityState; quantity?:number|null; checked_at:string; source?:"provider"|"merchant"|"nume"|"combined"; reason?:string|null }
+export interface FulfillmentMapping { provider:"manual"|"printify"|"printful"|"gelato"|"gooten"; provider_product_id:string; provider_variant_id:string; provider_sku?:string|null; extensions:Record<string,unknown> }
+export interface VendorVariant { variant_id:string; sku:string; title:string; options:Record<string,string>; active:boolean; retail_price:Money; currency:string; availability:Availability; fulfillment_mapping:FulfillmentMapping|null; external_references:ExternalReference[]; created_at:string; updated_at:string; extensions:Record<string,unknown> }
+export interface VendorProduct { product_id:string; storefront_id:string; row_ids:string[]; title:string; description:string; media:CatalogMedia[]; tags:string[]; variants:VendorVariant[]; external_references:ExternalReference[]; created_at:string; updated_at:string; active:boolean; status:"draft"|"active"|"archived"|"suspended"; extensions:Record<string,unknown> }
+export interface VendorCatalog { schema_version:"1.0.0"; catalog_id:string; merchant_id:string; storefront_id:string; assigned_row_ids:string[]; currency:string; revision:number; updated_at:string; products:VendorProduct[]; extensions:Record<string,unknown> }
+export interface FulfillmentProviderAdapter { validateMapping(mapping:FulfillmentMapping):Promise<string[]>; normalizeProducts(input:unknown):Promise<VendorProduct[]>; retrieveAvailability(mapping:FulfillmentMapping):Promise<Availability>; submitOrder(_order:unknown):Promise<never> }
+export interface MerchantConnection { merchant_id:string; stripe_account_id:string; secret_ref:string; status:"active"|"development"|"disabled" }
