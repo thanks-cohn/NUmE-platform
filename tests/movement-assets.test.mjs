@@ -19,8 +19,14 @@ test("every layout row receives finite nonzero alternating movement", () => {
   assert.equal(movementConfiguration(7).length, 7, "configuration grows with catalog rows");
 });
 
-test("reduced motion intentionally stops ambient movement", () => {
-  assert.ok(movementConfiguration(5, true).every(({ speed }) => speed === 0));
+test("reduced motion keeps gentler nonzero alternating ambient movement", () => {
+  const ordinary = movementConfiguration(8);
+  const reduced = movementConfiguration(8, true);
+  reduced.forEach(({ speed, direction }, index) => {
+    assert.ok(Number.isFinite(speed) && speed > 0, `reduced-motion row ${index + 1} moves`);
+    assert.ok(speed < ordinary[index].speed, `reduced-motion row ${index + 1} is gentler`);
+    assert.equal(direction, index % 2 === 0 ? -1 : 1);
+  });
 });
 
 test("ticker wraps into the buffered center without discontinuity", () => {

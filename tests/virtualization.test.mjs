@@ -33,7 +33,21 @@ test("implementation uses passive native scrolling and coordinated animation", a
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   assert.match(page, /addEventListener\("scroll", onScroll, \{ passive: true \}\)/);
   assert.match(page, /document\.visibilityState === "hidden"/);
+  assert.match(page, /visibilitychange/);
+  assert.match(page, /if \(!frame\) frame = requestAnimationFrame\(animate\)/);
   assert.doesNotMatch(page, /scroll-behavior:\s*smooth|preventDefault\(\).*wheel/s);
+});
+
+test("Pages output retains client ticker hydration and Q&A composition", async () => {
+  const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const packageJson = await readFile(new URL("../package.json", import.meta.url), "utf8");
+  assert.match(page, /^"use client";/);
+  assert.match(page, /requestAnimationFrame\(animate\)/);
+  assert.match(page, /Married to Beauty/);
+  assert.match(packageJson, /NUME_BUILD_TARGET=github-pages[^\n]*next build/);
+  const validator = await readFile(new URL("../scripts/validate-targets.mjs", import.meta.url), "utf8");
+  assert.match(validator, /Pages output lost client-side ticker hydration/);
+  assert.match(validator, /Pages output lost the Q&A final-row composition/);
 });
 
 test("all frame treatments are scoped by storefront style", async () => {

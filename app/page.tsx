@@ -372,7 +372,12 @@ export default function Home() {
             onPointerUp={(event) => endDrag(event, rowIndex)}
             onPointerCancel={(event) => endDrag(event, rowIndex)}
           >
-            <div className="row-heading-area"><h2 className={`row-heading ${logicalRow.heading_role === "primary" ? "is-primary" : ""}`}><span aria-label={logicalRow.title}>{logicalRow.title}</span><small>{logicalRow.subtitle}</small></h2></div>
+            <div className="row-heading-area">
+              {logicalRow.merchant_id === "merchant_qa" && (
+                <p className="qa-slogan">Married to Beauty</p>
+              )}
+              <h2 className={`row-heading ${logicalRow.heading_role === "primary" ? "is-primary" : ""}`}><span aria-label={logicalRow.title}>{logicalRow.title}</span><small>{logicalRow.subtitle}</small></h2>
+            </div>
             <div className="row-controls" aria-label={`Move row ${rowIndex + 1}`}>
               <button onClick={() => nudgeRow(rowIndex, -1)} aria-label={`Move row ${rowIndex + 1} left`}>←</button>
               <span>{String(rowIndex + 1).padStart(2, "0")}</span>

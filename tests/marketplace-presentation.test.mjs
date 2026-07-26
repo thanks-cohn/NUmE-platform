@@ -21,11 +21,21 @@ test("Venasi presentation owns the three central configured families with one ce
   assert.equal(layout.rows.filter(row => row.title === "VENASI" && row.heading_role === "primary").length, 1);
 });
 
-test("heading zones validate adjacency and Q&A retains accessible vertical treatment", () => {
+test("Q&A is exact, horizontal, and placed at the end", () => {
   assert.deepEqual(validateHeadingPlacements(layout.rows), []);
   assert.match(validateHeadingPlacements([{row_id:"a",heading_placement:"center"},{row_id:"b",heading_placement:"center"}])[0], /adjacent/);
-  assert.equal(layout.rows.at(-1).heading_placement, "vertical-end");
-  assert.match(css, /writing-mode:\s*vertical-rl/);
+  assert.equal(layout.rows.at(-1).title, "Q&A");
+  assert.equal(layout.rows.at(-1).heading_placement, "end");
+  const qaRules = css.match(/\[data-nume-vendor=["']merchant_qa["']\][^{]*\{[^}]*\}/g) ?? [];
+  assert.ok(qaRules.length > 0);
+  assert.doesNotMatch(qaRules.join("\n"), /writing-mode:\s*vertical-rl|text-orientation:\s*upright/);
+});
+
+test("Q&A slogan has one separate vendor-scoped presentation region", async () => {
+  const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  assert.equal(page.match(/Married to Beauty/g)?.length, 1);
+  assert.match(page, /className="qa-slogan">Married to Beauty<\/p>[\s\S]*<h2 className=/);
+  assert.doesNotMatch(css, /(?<!merchant_qa[^{}]{0,120})\.qa-slogan\s*\{/);
 });
 
 test("featured resolver centers multi-row and single-row storefronts and validates visit slugs", () => {
