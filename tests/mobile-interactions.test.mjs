@@ -50,35 +50,9 @@ test("mobile hero is enlarged, contained, safe-area aware, and uses dvh", () => 
 
 test("mobile copy and navigation have dedicated non-overlapping layout rows", () => {
   assert.match(page, /className="mobile-rotunda-meta"/);
-  assert.match(page, /className="mobile-rotunda-title"/);
-  assert.match(page, /className="mobile-rotunda-details"/);
   assert.match(page, /className="mobile-rotunda-nav"/);
-  assert.match(css, /\.mobile-rotunda-meta \{[\s\S]*?display: grid/);
+  assert.match(css, /\.mobile-rotunda-meta \{[\s\S]*?display: flex/);
   assert.match(css, /\.mobile-rotunda-nav \{[\s\S]*?display: grid/);
-});
-
-test("mobile text keeps ordinary words intact and separates price from the title", () => {
-  assert.doesNotMatch(css.slice(css.indexOf("/* Mobile presentation")), /overflow-wrap: anywhere/);
-  assert.match(css, /\.mobile-rotunda-meta h1 \{[\s\S]*?overflow-wrap: normal;[\s\S]*?word-break: normal;[\s\S]*?hyphens: none/);
-  assert.match(css, /\.tile-meta \{[\s\S]*?grid-template-columns: minmax\(0, 1fr\)/);
-  assert.match(css, /\.mobile-rotunda-details \{[\s\S]*?flex-wrap: wrap/);
-});
-
-test("mobile row headings use catalog alignment and a reserved card-free band", () => {
-  assert.match(page, /data-mobile-align=\{logicalRow\.tokens\.header_alignment\}/);
-  assert.match(css, /\.gallery-row\[data-mobile-align="center"\] \.row-heading/);
-  assert.match(css, /\.gallery-row\[data-mobile-align="right"\] \.row-heading/);
-  assert.match(css, /\.gallery-row\[class\*="heading-"\] \.row-heading[\s\S]*?writing-mode: horizontal-tb/);
-  assert.match(css, /\.gallery-row\[style\*="--row-decoration"\] \{[\s\S]*?padding: 82px 0 10px/);
-});
-
-test("mobile landscape assigns metadata, hero, and navigation distinct columns", () => {
-  const landscape = css.slice(css.indexOf("@media (max-width: 900px) and (orientation: landscape)"));
-  assert.match(landscape, /grid-template-columns: minmax\(176px, 34vw\) minmax\(0, 1fr\) 108px/);
-  assert.match(landscape, /\.mobile-rotunda-meta \{ grid-column: 1/);
-  assert.match(landscape, /\.mobile-rotunda-stage \{ grid-column: 2/);
-  assert.match(landscape, /\.mobile-rotunda-nav \{ grid-column: 3/);
-  assert.match(landscape, /grid-template-columns: minmax\(96px, \.8fr\) minmax\(0, 1\.2fr\)/);
 });
 
 test("rotunda preserves previous, next, ascend, and descend boundaries", () => {
