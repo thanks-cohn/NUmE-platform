@@ -1,0 +1,7 @@
+{
+  "connections": [
+    {"merchant_id":"merchant_emadoku","stripe_account_id":"acct_emadoku_test","secret_ref":"secret://stripe/emadoku","status":"development"},
+    {"merchant_id":"merchant_nume","stripe_account_id":"acct_nume_test","secret_ref":"secret://stripe/nume","status":"development"},
+    {"merchant_id":"merchant_qa","stripe_account_id":"acct_qa_test","secret_ref":"secret://stripe/qa","status":"development"}
+  ]
+}

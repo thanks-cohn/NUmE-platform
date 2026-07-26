@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0.0",
+  "layout_id": "layout_marketplace_demo",
+  "storefronts": [
+    {
+      "storefront_id": "storefront_emadoku",
+      "display_name": "Emadoku"
+    },
+    {
+      "storefront_id": "storefront_numenume",
+      "display_name": "NUME / NUMENUMe"
+    },
+    {
+      "storefront_id": "storefront_qa",
+      "display_name": "Q&A"
+    }
+  ],
+  "rows": [
+    {
+      "row_id": "row_emadoku",
+      "storefront_id": "storefront_emadoku",
+      "entrepreneur_group_id": null,
+      "title": "Emadoku Collection",
+      "position": 1,
+      "style_profile_id": "style_emadoku",
+      "product_ids": [
+        "product_emadoku_01",
+        "product_emadoku_02",
+        "product_emadoku_03",
+        "product_emadoku_04",
+        "product_emadoku_05",
+        "product_emadoku_06",
+        "product_emadoku_07",
+        "product_emadoku_08",
+        "product_emadoku_09",
+        "product_emadoku_10"
+      ],
+      "subtitle": "Manga, streetwear and print culture"
+    },
+    {
+      "row_id": "row_nume_apparel",
+      "storefront_id": "storefront_numenume",
+      "entrepreneur_group_id": "group_numenume",
+      "title": "NUME Apparel",
+      "position": 2,
+      "style_profile_id": "style_nume_apparel",
+      "product_ids": [
+        "product_nume_apparel_01",
+        "product_nume_apparel_02",
+        "product_nume_apparel_03",
+        "product_nume_apparel_04",
+        "product_nume_apparel_05",
+        "product_nume_apparel_06",
+        "product_nume_apparel_07",
+        "product_nume_apparel_08",
+        "product_nume_apparel_09",
+        "product_nume_apparel_10"
+      ],
+      "subtitle": "Editorial clothing for considered work"
+    },
+    {
+      "row_id": "row_nume_objects",
+      "storefront_id": "storefront_numenume",
+      "entrepreneur_group_id": "group_numenume",
+      "title": "NUME Objects",
+      "position": 3,
+      "style_profile_id": "style_nume_objects",
+      "product_ids": [
+        "product_nume_objects_01",
+        "product_nume_objects_02",
+        "product_nume_objects_03",
+        "product_nume_objects_04",
+        "product_nume_objects_05",
+        "product_nume_objects_06",
+        "product_nume_objects_07",
+        "product_nume_objects_08",
+        "product_nume_objects_09",
+        "product_nume_objects_10"
+      ],
+      "subtitle": "Refined tools for studio and home"
+    },
+    {
+      "row_id": "row_nume_editions",
+      "storefront_id": "storefront_numenume",
+      "entrepreneur_group_id": "group_numenume",
+      "title": "NUME Editions",
+      "position": 4,
+      "style_profile_id": "style_nume_editions",
+      "product_ids": [
+        "product_nume_editions_01",
+        "product_nume_editions_02",
+        "product_nume_editions_03",
+        "product_nume_editions_04",
+        "product_nume_editions_05",
+        "product_nume_editions_06",
+        "product_nume_editions_07",
+        "product_nume_editions_08",
+        "product_nume_editions_09",
+        "product_nume_editions_10"
+      ],
+      "subtitle": "Independent books and printed matter"
+    },
+    {
+      "row_id": "row_qa",
+      "storefront_id": "storefront_qa",
+      "entrepreneur_group_id": null,
+      "title": "Q&A Fashion",
+      "position": 5,
+      "style_profile_id": "style_qa",
+      "product_ids": [
+        "product_qa_01",
+        "product_qa_02",
+        "product_qa_03",
+        "product_qa_04",
+        "product_qa_05",
+        "product_qa_06",
+        "product_qa_07",
+        "product_qa_08",
+        "product_qa_09",
+        "product_qa_10"
+      ],
+      "subtitle": "Pink neon, playful glamour and joyful style"
+    }
+  ]
+}

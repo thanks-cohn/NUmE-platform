@@ -2,6 +2,7 @@
   "name": "nume-gallery",
   "version": "0.1.0",
   "private": true,
+  "bin": { "nume-vcatalog": "./bin/nume-vcatalog.mjs" },
   "engines": {
     "node": ">=22.13.0"
   },
@@ -14,6 +15,8 @@
     "validate:artifact": "bash scripts/validate-artifact.sh",
     "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
     "validate:catalog": "node scripts/validate-catalog.mjs",
+    "validate:vendor-catalogs": "node bin/nume-vcatalog.mjs validate --all --json",
+    "typecheck": "tsc --noEmit",
     "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate"
   },
   "dependencies": {

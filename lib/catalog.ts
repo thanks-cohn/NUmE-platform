@@ -1,5 +1,5 @@
-import catalogData from "../data/catalogs/nume-marketplace.v1.json";
-import layoutData from "../data/layout/marketplace-layout.v1.json";
+import catalogData from "../data/catalog-sync/published-marketplace.v1.json";
+import layoutData from "../data/catalog-sync/published-layout.v1.json";
 import groupData from "../data/styles/entrepreneur-groups.v1.json";
 import rowStyleData from "../data/styles/row-styles.v1.json";
 import { resolveAssetPath } from "./asset-path.mjs";
