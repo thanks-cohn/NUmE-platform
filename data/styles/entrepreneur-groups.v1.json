@@ -21,7 +21,11 @@
         "card_radius_px": 10,
         "rotunda_surface": "rgba(233,229,222,.97)",
         "vendor_image_fallback_background": "#faf8f3",
-        "vendor_image_fallback_foreground": "#171717"
+        "vendor_image_fallback_foreground": "#171717",
+        "color_soft_surface": "#f5f0e6",
+        "color_edge": "#8b7754",
+        "title_composition": "merchant-over-family",
+        "image_treatment": "natural-editorial"
       }
     }
   ]

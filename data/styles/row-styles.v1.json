@@ -20,7 +20,11 @@
         "card_radius_px": 0,
         "rotunda_surface": "rgba(23,21,18,.96)",
         "vendor_image_fallback_background": "#f4efe3",
-        "vendor_image_fallback_foreground": "#f5efe2"
+        "vendor_image_fallback_foreground": "#f5efe2",
+        "color_soft_surface": "#f4efe3",
+        "color_edge": "#bd1f2d",
+        "title_composition": "merchant-over-family",
+        "image_treatment": "graphic-contrast"
       }
     },
     {
@@ -29,7 +33,11 @@
       "tokens": {
         "color_accent": "#6f745f",
         "vendor_image_fallback_background": "#171717",
-        "vendor_image_fallback_foreground": "#ffffff"
+        "vendor_image_fallback_foreground": "#ffffff",
+        "color_soft_surface": "rgba(255,255,255,.12)",
+        "color_edge": "#6f745f",
+        "title_composition": "merchant-over-family",
+        "image_treatment": "natural-editorial"
       }
     },
     {
@@ -38,7 +46,11 @@
       "tokens": {
         "color_accent": "#9a835e",
         "vendor_image_fallback_background": "#171717",
-        "vendor_image_fallback_foreground": "#ffffff"
+        "vendor_image_fallback_foreground": "#ffffff",
+        "color_soft_surface": "rgba(255,255,255,.12)",
+        "color_edge": "#9a835e",
+        "title_composition": "merchant-over-family",
+        "image_treatment": "natural-editorial"
       }
     },
     {
@@ -47,7 +59,11 @@
       "tokens": {
         "color_accent": "#59605b",
         "vendor_image_fallback_background": "#171717",
-        "vendor_image_fallback_foreground": "#ffffff"
+        "vendor_image_fallback_foreground": "#ffffff",
+        "color_soft_surface": "rgba(255,255,255,.12)",
+        "color_edge": "#59605b",
+        "title_composition": "merchant-over-family",
+        "image_treatment": "natural-editorial"
       }
     },
     {
@@ -69,7 +85,11 @@
         "card_radius_px": 26,
         "rotunda_surface": "rgba(75,6,61,.96)",
         "vendor_image_fallback_background": "#ffd6ee",
-        "vendor_image_fallback_foreground": "#fff7fc"
+        "vendor_image_fallback_foreground": "#fff7fc",
+        "color_soft_surface": "#ffd6ee",
+        "color_edge": "#ff4fca",
+        "title_composition": "merchant-over-family",
+        "image_treatment": "jewel-saturation"
       }
     }
   ]

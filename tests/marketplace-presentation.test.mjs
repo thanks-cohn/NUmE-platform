@@ -15,6 +15,14 @@ test("five configured rows are separated, straight and receive safe horizontal m
   assert.ok(movementConfiguration(layout.rows.length).every(({speed}) => Number.isFinite(speed) && speed > 0));
 });
 
+test("mobile shelf spacing and title containment use fluid independent measures", () => {
+  assert.match(css, /--row-interior-bottom:\s*clamp/);
+  assert.match(css, /--row-neighbor-gap:\s*clamp/);
+  assert.match(css, /--product-gap:\s*clamp/);
+  assert.match(css, /word-break:\s*keep-all/);
+  assert.match(css, /max-inline-size:\s*min\(72vw, 19rem\)/);
+});
+
 test("Venasi presentation owns the three central configured families with one center wordmark", () => {
   assert.deepEqual(layout.rows.slice(1,4).map(row => row.storefront_id), Array(3).fill("storefront_numenume"));
   assert.deepEqual(layout.rows.slice(1,4).map(row => row.title), ["Clothing", "VENASI", "Swimwear"]);
