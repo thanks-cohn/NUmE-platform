@@ -55,9 +55,8 @@ test("mobile copy and navigation have dedicated non-overlapping layout rows", ()
   assert.match(css, /\.mobile-rotunda-nav \{[\s\S]*?display: grid/);
 });
 
-test("rotunda preserves previous, next, ascend, and descend boundaries", () => {
-  assert.match(page, /label: "Previous"/);
-  assert.match(page, /label: "Next"/);
-  assert.match(page, /label: "Ascend"/);
-  assert.match(page, /label: "Descend"/);
+test("rotunda applies the selected row theme and exposes its identity", () => {
+  assert.match(page, /data-theme-row=\{marketplaceRows\[selectedRow\]\.row_id\}/);
+  assert.match(page, /style=\{styleVariables\(marketplaceRows\[selectedRow\]\.tokens\)\}/);
+  assert.match(css, /transition: background-color \.32s ease, color \.32s ease/);
 });

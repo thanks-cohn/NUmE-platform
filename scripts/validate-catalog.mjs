@@ -10,7 +10,7 @@ if (JSON.stringify(layout) !== JSON.stringify(publishedLayout)) errors.push("sou
 if (layout.rows.at(-1)?.title !== "Q&A") errors.push("canonical final row title must be Q&A");
 const allowedAvailability = new Set(["available", "low_stock", "sold_out", "temporarily_unavailable", "discontinued", "preorder", "unknown", "mapping_error", "suspended"]);
 const allowedExternal = new Set(["stripe_product", "stripe_price", "printify_product", "printify_variant", "printful_product", "printful_variant", "merchant_sku", "other"]);
-const allowedTokens = new Set(["color_background", "color_surface", "color_foreground", "color_accent", "font_heading", "font_body", "heading_size", "heading_weight", "heading_tracking", "border_style", "decoration", "header_alignment", "card_radius_px", "rotunda_surface", "vendor_image_fallback_background", "vendor_image_fallback_foreground"]);
+const allowedTokens = new Set(["color_background", "color_surface", "color_soft_surface", "color_foreground", "color_accent", "color_edge", "font_heading", "font_body", "heading_size", "heading_weight", "heading_tracking", "border_style", "decoration", "header_alignment", "title_composition", "image_treatment", "card_radius_px", "rotunda_surface", "vendor_image_fallback_background", "vendor_image_fallback_foreground"]);
 const unique = (values, label) => values.length === new Set(values).size || errors.push(`duplicate ${label}`);
 unique(catalog.products.map((p) => p.product_id), "product_id");
 unique(catalog.products.flatMap((p) => p.variants.map((v) => v.variant_id)), "variant_id");

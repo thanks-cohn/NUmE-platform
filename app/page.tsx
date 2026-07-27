@@ -7,6 +7,7 @@ import { resolveFeaturedPlacement } from "../lib/featured-placement.mjs";
 import { ProductImage } from "./product-image";
 import { movementConfiguration, wrapTickerPosition } from "../lib/movement.mjs";
 import { activeTickerIndexes, makeStressRows, virtualWindow } from "../lib/virtualization.mjs";
+import { resolveRotundaMove } from "../lib/rotunda-navigation.mjs";
 
 const rows = marketplaceRows.map((row) => row.products);
 const ROW_COPIES = 5;
@@ -22,12 +23,15 @@ type TickerState = {
 function styleVariables(tokens: StyleTokens) {
   return {
     "--row-bg": tokens.color_background, "--row-surface": tokens.color_surface,
+    "--row-soft-surface": tokens.color_soft_surface ?? tokens.color_surface,
     "--row-fg": tokens.color_foreground, "--row-accent": tokens.color_accent,
+    "--row-edge": tokens.color_edge ?? tokens.color_accent,
     "--row-font": tokens.font_heading, "--row-radius": `${tokens.card_radius_px ?? 0}px`,
     "--row-rotunda": tokens.rotunda_surface, "--row-align": tokens.header_alignment,
     "--row-body-font": tokens.font_body, "--row-heading-size": tokens.heading_size,
     "--row-heading-weight": tokens.heading_weight, "--row-heading-tracking": tokens.heading_tracking,
     "--row-border": tokens.border_style, "--row-decoration": tokens.decoration,
+    "--row-image-treatment": tokens.image_treatment ?? "natural",
   } as React.CSSProperties;
 }
 
@@ -303,30 +307,14 @@ export default function Home() {
   }
 
   function getRotundaMove(direction: -1 | 1) {
-    if (!selected) return { target: null, label: direction < 0 ? "Previous" : "Next" };
-
-    const rowIndex = rows.findIndex((row) => row.some((work) => work.product_id === selected.product_id));
-    const itemIndex = rows[rowIndex]?.findIndex((work) => work.product_id === selected.product_id) ?? -1;
-    if (rowIndex < 0 || itemIndex < 0) return { target: null, label: direction < 0 ? "Previous" : "Next" };
-
-    if (direction < 0) {
-      if (itemIndex > 0) return { target: rows[rowIndex][itemIndex - 1], label: "Previous" };
-      if (rowIndex > 0) return { target: rows[rowIndex - 1].at(-1) ?? null, label: "Ascend" };
-      return { target: null, label: "Ascend" };
-    }
-
-    if (itemIndex < rows[rowIndex].length - 1) {
-      return { target: rows[rowIndex][itemIndex + 1], label: "Next" };
-    }
-    if (rowIndex < rows.length - 1) return { target: rows[rowIndex + 1][0], label: "Descend" };
-    return { target: null, label: "Descend" };
+    return resolveRotundaMove(rows, selected?.product_id, direction);
   }
 
   function selectRelative(direction: -1 | 1) {
     const move = getRotundaMove(direction);
     if (move.target) {
       setSelected(move.target);
-      setSelectedRow(rows.findIndex((row) => row.some((work) => work.product_id === move.target?.product_id)));
+      setSelectedRow(move.rowIndex);
     }
   }
 
@@ -376,7 +364,10 @@ export default function Home() {
               {logicalRow.merchant_id === "merchant_qa" && (
                 <p className="qa-slogan">Married to Beauty</p>
               )}
-              <h2 className={`row-heading ${logicalRow.heading_role === "primary" ? "is-primary" : ""}`}><span aria-label={logicalRow.title}>{logicalRow.title}</span><small>{logicalRow.subtitle}</small></h2>
+              <h2 className={`row-heading ${logicalRow.heading_role === "primary" ? "is-primary" : ""}`} aria-label={`${logicalRow.merchant_name}, ${logicalRow.title}`}>
+                <span className="merchant-title">{logicalRow.merchant_name}</span>
+                <span className="family-title">{logicalRow.merchant_name === logicalRow.title ? logicalRow.subtitle : logicalRow.title}</span>
+              </h2>
             </div>
             <div className="row-controls" aria-label={`Move row ${rowIndex + 1}`}>
               <button onClick={() => nudgeRow(rowIndex, -1)} aria-label={`Move row ${rowIndex + 1} left`}>←</button>
@@ -459,7 +450,7 @@ export default function Home() {
       {selected && stage > 0 && (
         <>
         <section
-          className="reveal-band desktop-rotunda" style={styleVariables(marketplaceRows[selectedRow].tokens)}
+          className="reveal-band desktop-rotunda" style={styleVariables(marketplaceRows[selectedRow].tokens)} data-theme-row={marketplaceRows[selectedRow].row_id}
           aria-live="polite"
           aria-label={`${selected.title} enlarged view`}
           role="dialog"
@@ -490,7 +481,7 @@ export default function Home() {
             </button>
 
             <div className="work-copy">
-              <p>{marketplaceRows[selectedRow].title}</p>
+              <p>{marketplaceRows[selectedRow].merchant_name} · {marketplaceRows[selectedRow].title}</p>
               <h1>{selected.title}</h1>
               <span>{formatPrice(selected.variants[0].retail_price.amount_minor, selected.variants[0].retail_price.currency)} · {displayLabel(selected.variants[0].availability.status)}</span>
             </div>
@@ -530,7 +521,7 @@ export default function Home() {
         </section>
 
         <section
-          className={`mobile-rotunda ${stage === 2 ? "is-previewing" : ""}`} style={styleVariables(marketplaceRows[selectedRow].tokens)}
+          className={`mobile-rotunda ${stage === 2 ? "is-previewing" : ""}`} style={styleVariables(marketplaceRows[selectedRow].tokens)} data-theme-row={marketplaceRows[selectedRow].row_id}
           aria-live="polite"
           aria-label={`${selected.title} enlarged mobile view`}
           role="dialog"
@@ -538,7 +529,7 @@ export default function Home() {
         >
           <div className="mobile-rotunda-meta">
             <div>
-              <p>{marketplaceRows[selectedRow].title}</p>
+              <p>{marketplaceRows[selectedRow].merchant_name} · {marketplaceRows[selectedRow].title}</p>
               <h1>{selected.title}</h1>
             </div>
             <span>{formatPrice(selected.variants[0].retail_price.amount_minor, selected.variants[0].retail_price.currency)} · {displayLabel(selected.variants[0].availability.status)}</span>
