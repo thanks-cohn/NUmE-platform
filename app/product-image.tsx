@@ -51,9 +51,16 @@ function restart(key: string) {
   const record = records.get(key); if (!record || record.inflight || record.status !== "paused") return;
   record.cycle = 0; record.status = "failed"; attempt(key);
 }
+function sizedUrl(url: string, width: number) {
+  if (!/^https:\/\/images\.unsplash\.com\//.test(url)) return url;
+  const parsed = new URL(url);
+  parsed.searchParams.set("w", String(width));
+  parsed.searchParams.set("q", "78");
+  return parsed.toString();
+}
 
 export function ProductImage({ product, alt, loading = "lazy", vendor, tokens }: { product: Product; alt: string; loading?: "eager" | "lazy"; vendor: string; tokens: StyleTokens }) {
-  const url = imagePath(product);
+  const url = sizedUrl(imagePath(product), 660);
   const key = `${vendor}:${url || "missing"}`;
   const [, render] = useState(0);
   const record = useMemo(() => {
@@ -66,7 +73,15 @@ export function ProductImage({ product, alt, loading = "lazy", vendor, tokens }:
     record.listeners.add(update);
     const online = () => record.status !== "ready" && attempt(key);
     window.addEventListener("online", online);
-    return () => { record.listeners.delete(update); window.removeEventListener("online", online); };
+    return () => {
+      record.listeners.delete(update);
+      window.removeEventListener("online", online);
+      if (record.listeners.size === 0 && record.status !== "ready") {
+        if (record.timer) clearTimeout(record.timer);
+        record.timer = null;
+        records.delete(key);
+      }
+    };
   }, [key, record]);
   const background = tokens.vendor_image_fallback_background || tokens.color_surface || "#171717";
   const configured = tokens.vendor_image_fallback_foreground || tokens.color_foreground || "#ffffff";
@@ -74,7 +89,7 @@ export function ProductImage({ product, alt, loading = "lazy", vendor, tokens }:
   const failed = record.status === "failed" || record.status === "paused";
   const style = { "--image-fallback-bg": background, "--image-fallback-fg": foreground } as CSSProperties;
   return <span className={`product-image ${failed ? "has-failed" : ""}`} style={style} onPointerEnter={() => restart(key)} onFocus={() => restart(key)} onTouchStart={() => restart(key)} tabIndex={failed ? 0 : -1} aria-label={failed ? `${product.title} image temporarily unavailable; focus or touch to retry` : undefined}>
-    {!failed && url && <img src={url} alt={alt} loading={loading} decoding="async" width={660} height={500} draggable={false} onLoad={(event) => { const image = event.currentTarget; const decoded = image.decode?.(); Promise.resolve(decoded).then(() => { markReady(key); }, () => schedule(key)); }} onError={() => markFailed(key)} />}
+    {!failed && url && <img src={sizedUrl(url, 660)} srcSet={/^https:\/\/images\.unsplash\.com\//.test(url) ? `${sizedUrl(url, 360)} 360w, ${sizedUrl(url, 660)} 660w, ${sizedUrl(url, 960)} 960w` : undefined} sizes="(max-width: 700px) 62vw, (max-width: 1100px) 30vw, 310px" alt={alt} loading={loading} fetchPriority={loading === "eager" ? "high" : "auto"} decoding="async" width={660} height={500} draggable={false} onLoad={(event) => { const image = event.currentTarget; const decoded = image.decode?.(); Promise.resolve(decoded).then(() => { markReady(key); }, () => schedule(key)); }} onError={() => markFailed(key)} />}
     {failed && <span className="product-image-fallback" aria-hidden="true">NUME</span>}
   </span>;
 }

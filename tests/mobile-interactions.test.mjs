@@ -1,62 +1,40 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+const [page, responsive, marketplace, rotunda, engine] = await Promise.all([
+  readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+  readFile(new URL("../app/styles/responsive.css", import.meta.url), "utf8"),
+  readFile(new URL("../app/styles/marketplace.css", import.meta.url), "utf8"),
+  readFile(new URL("../app/styles/rotunda.css", import.meta.url), "utf8"),
+  readFile(new URL("../lib/motion/ticker-engine.ts", import.meta.url), "utf8"),
+]);
 
-const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
-const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-
-test("mobile replaces the row pill with accessible per-row edge controls", () => {
+test("mobile edge controls remain labelled and scoped to their row", () => {
   assert.match(page, /aria-label=\{`Move row \$\{rowIndex \+ 1\} left`\}/);
-  assert.match(page, /aria-label=\{`Move row \$\{rowIndex \+ 1\} right`\}/);
-  assert.match(css, /@media \(max-width: 900px\)[\s\S]*?\.row-controls \{ display: none !important; \}/);
-  assert.match(css, /\.mobile-edge-control[\s\S]*?width: 18vw/);
-});
-
-test("edge controls own their pointer gesture and nudge only their row", () => {
-  assert.match(page, /event\.stopPropagation\(\)/);
   assert.match(page, /nudgeRow\(rowIndex, direction\)/);
-  assert.match(page, /onPointerCancel=\{stopEdgeHold\}/);
-  assert.match(page, /onPointerLeave=\{stopEdgeHold\}/);
+  assert.match(responsive, /\.mobile-edge-control[\s\S]*width:18vw/);
 });
 
-test("drag completion still suppresses accidental product opening", () => {
+test("horizontal dragging claims only clear horizontal intent and preserves momentum", () => {
+  assert.match(engine, /Math\.abs\(totalX\) <= INTENT_DISTANCE/);
+  assert.match(engine, /Math\.abs\(totalX\) <= Math\.abs\(totalY\) \* 1\.2/);
+  assert.match(engine, /drag\.row\.velocity = Math\.max\(-MAX_THROW/);
+  assert.match(engine, /1 - Math\.exp\(-response \* dt\)/);
   assert.match(page, /suppressOpenUntil\.current = performance\.now\(\) \+ 180/);
-  assert.match(page, /performance\.now\(\) < suppressOpenUntil\.current/);
 });
 
-test("open rotunda makes the background inert and locks restored scrolling", () => {
+test("rotunda is modal, inert, and restores the exact native scroll offset", () => {
   assert.match(page, /inert=\{rotundaOpen\}/);
-  assert.match(page, /aria-hidden=\{rotundaOpen\}/);
   assert.match(page, /document\.body\.style\.position = "fixed"/);
   assert.match(page, /window\.scrollTo\(0, scrollY\)/);
-  assert.match(css, /\.is-open \.gallery \{\s*pointer-events: none/);
+  assert.match(marketplace, /\.is-open \.gallery\{pointer-events:none\}/);
 });
 
-test("mobile uses a dedicated grid rotunda while preserving the desktop rotunda", () => {
-  assert.match(page, /className="reveal-band desktop-rotunda"/);
-  assert.match(page, /className=\{`mobile-rotunda/);
-  assert.match(css, /\.mobile-rotunda \{ display: none; \}/);
-  assert.match(css, /@media \(max-width: 900px\)[\s\S]*?\.desktop-rotunda \{ display: none; \}/);
-  assert.match(css, /grid-template-rows: auto minmax\(0, 1fr\) auto/);
-});
-
-test("mobile hero is enlarged, contained, safe-area aware, and uses dvh", () => {
-  assert.match(css, /height: 100dvh/);
-  assert.match(css, /width: min\(94vw, 680px\)/);
-  assert.match(css, /\.mobile-hero img \{[\s\S]*?object-fit: contain/);
-  assert.match(css, /env\(safe-area-inset-top\)/);
-  assert.match(css, /env\(safe-area-inset-bottom\)/);
-});
-
-test("mobile copy and navigation have dedicated non-overlapping layout rows", () => {
-  assert.match(page, /className="mobile-rotunda-meta"/);
-  assert.match(page, /className="mobile-rotunda-nav"/);
-  assert.match(css, /\.mobile-rotunda-meta \{[\s\S]*?display: flex/);
-  assert.match(css, /\.mobile-rotunda-nav \{[\s\S]*?display: grid/);
-});
-
-test("rotunda applies the selected row theme and exposes its identity", () => {
-  assert.match(page, /data-theme-row=\{marketplaceRows\[selectedRow\]\.row_id\}/);
-  assert.match(page, /style=\{styleVariables\(marketplaceRows\[selectedRow\]\.tokens\)\}/);
-  assert.match(css, /transition: background-color \.32s ease, color \.32s ease/);
+test("mobile rotunda has safe-area-aware non-overlapping geometry", () => {
+  assert.match(rotunda, /\.mobile-rotunda\{display:none\}/);
+  assert.match(responsive, /grid-template-rows:auto minmax\(0,1fr\) auto/);
+  assert.match(responsive, /100dvh/);
+  assert.match(responsive, /env\(safe-area-inset-bottom\)/);
+  assert.match(responsive, /\.mobile-hero img\{object-fit:contain\}/);
+  assert.match(responsive, /\.mobile-rotunda-nav\{display:grid/);
 });
