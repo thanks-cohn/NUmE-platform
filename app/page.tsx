@@ -1,24 +1,15 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { displayLabel, featuredPlacementData, formatPrice, isPurchasable, layoutData, marketplaceRows, type Product, type StyleTokens } from "../lib/catalog";
 import { resolveFeaturedPlacement } from "../lib/featured-placement.mjs";
 import { ProductImage } from "./product-image";
-import { movementConfiguration, wrapTickerPosition } from "../lib/movement.mjs";
-import { activeTickerIndexes, makeStressRows, virtualWindow } from "../lib/virtualization.mjs";
 import { resolveRotundaMove } from "../lib/rotunda-navigation.mjs";
+import { TickerEngine } from "../lib/motion/ticker-engine";
 
 const rows = marketplaceRows.map((row) => row.products);
-const ROW_COPIES = 5;
-const DEFAULT_ROW_HEIGHT = 300;
-const INITIAL_WINDOW = { start: 0, end: Math.min(5, marketplaceRows.length), top: 0, bottom: 0 };
-
-type TickerState = {
-  position: number;
-  target: number;
-  initialized: boolean;
-};
+const ROW_COPIES = 2;
 
 function styleVariables(tokens: StyleTokens) {
   return {
@@ -41,22 +32,8 @@ export default function Home() {
   const [selected, setSelected] = useState<Product | null>(null);
   const [selectedRow, setSelectedRow] = useState(0);
   const [stage, setStage] = useState<0 | 1 | 2>(0);
-  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
-  const [logicalRows, setLogicalRows] = useState(() => makeStressRows(marketplaceRows, marketplaceRows.length));
-  const [windowRange, setWindowRange] = useState(INITIAL_WINDOW);
-  const virtualMetrics = useRef({ offset: 0, viewport: 900, rowHeight: DEFAULT_ROW_HEIGHT });
-  const windowRangeRef = useRef(INITIAL_WINDOW);
-  const rowTracks = useRef(new Map<number, HTMLDivElement>());
-  const rowSegments = useRef(new Map<number, HTMLDivElement>());
-  const cycleWidths = useRef(new Map<number, number>());
-  const tickerState = useRef(new Map<number, TickerState>());
-  const dragState = useRef({
-    rowIndex: -1,
-    pointerId: -1,
-    lastX: 0,
-    distance: 0,
-    dragging: false,
-  });
+  const engine = useRef<TickerEngine | null>(null);
+  const rowParts = useRef(new Map<number, { row?: HTMLElement; track?: HTMLElement; segment?: HTMLElement; cleanup?: () => void }>());
   const suppressOpenUntil = useRef(0);
   const edgeHoldDelay = useRef<number | null>(null);
   const edgeHoldRepeat = useRef<number | null>(null);
@@ -68,10 +45,23 @@ export default function Home() {
     [selected, selectedRow],
   );
 
+  const bindPart = useCallback((index: number, part: "row" | "track" | "segment", element: HTMLElement | null) => {
+    const parts = rowParts.current.get(index) ?? {};
+    parts.cleanup?.(); parts.cleanup = undefined;
+    if (element) parts[part] = element; else delete parts[part];
+    if (parts.row && parts.track && parts.segment && engine.current) {
+      parts.cleanup = engine.current.register({ row: parts.row, track: parts.track, segment: parts.segment, direction: index % 2 ? 1 : -1 });
+    }
+    if (element) rowParts.current.set(index, parts); else if (!parts.row && !parts.track && !parts.segment) rowParts.current.delete(index);
+  }, []);
+
   useEffect(() => {
-    if (process.env.NODE_ENV === "production") return;
-    const requested = Number(new URLSearchParams(window.location.search).get("numeStress"));
-    if (requested >= 50 && requested <= 1000) queueMicrotask(() => setLogicalRows(makeStressRows(marketplaceRows, requested)));
+    const partsMap = rowParts.current;
+    engine.current = new TickerEngine();
+    for (const [index, parts] of partsMap) if (parts.row && parts.track && parts.segment) {
+      parts.cleanup = engine.current.register({ row: parts.row, track: parts.track, segment: parts.segment, direction: index % 2 ? 1 : -1 });
+    }
+    return () => { engine.current?.destroy(); engine.current = null; partsMap.clear(); };
   }, []);
 
   useLayoutEffect(() => {
@@ -82,34 +72,9 @@ export default function Home() {
     if (!resolved) return;
     const rowIndex = marketplaceRows.findIndex((row) => row.row_id === resolved.anchor_row_id);
     if (rowIndex < 0) return;
-    const rowHeight = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gallery-row-height")) || DEFAULT_ROW_HEIGHT;
-    window.scrollTo({ top: Math.max(0, 122 + rowIndex * rowHeight + rowHeight / 2 - innerHeight / 2), behavior: "instant" });
+    document.querySelector<HTMLElement>(`[data-logical-index="${rowIndex}"]`)?.scrollIntoView({ block: "center" });
     document.documentElement.dataset.featuredResolution = resolved.reason;
   }, []);
-
-  useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const galleryTop = 122;
-      const offset = Math.max(0, window.scrollY - galleryTop);
-      const viewport = window.innerHeight;
-      virtualMetrics.current = { offset, viewport, rowHeight: virtualMetrics.current.rowHeight };
-      for (const [index, segment] of rowSegments.current) cycleWidths.current.set(index, segment.getBoundingClientRect().width + 14);
-      const rowHeight = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gallery-row-height")) || DEFAULT_ROW_HEIGHT;
-      virtualMetrics.current.rowHeight = rowHeight;
-      const next = virtualWindow(logicalRows.length, offset, viewport, rowHeight);
-      windowRangeRef.current = next;
-      setWindowRange(current => current.start === next.start && current.end === next.end && current.bottom === next.bottom ? current : next);
-    };
-    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    const observer = new ResizeObserver(onScroll); observer.observe(document.documentElement);
-    document.fonts?.ready.then(onScroll);
-    return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); observer.disconnect(); };
-  }, [logicalRows.length]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -120,13 +85,11 @@ export default function Home() {
       }
       if (event.key === "ArrowLeft") {
         if (stage > 0) selectRelative(-1);
-        else if (hoveredRow !== null) nudgeRow(hoveredRow, -1);
         else return;
         event.preventDefault();
       }
       if (event.key === "ArrowRight") {
         if (stage > 0) selectRelative(1);
-        else if (hoveredRow !== null) nudgeRow(hoveredRow, 1);
         else return;
         event.preventDefault();
       }
@@ -167,48 +130,6 @@ export default function Home() {
 
   useEffect(() => () => stopEdgeHold(), []);
 
-  useEffect(() => {
-    let frame = 0;
-    let lastTime = performance.now();
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const constrained = (navigator.hardwareConcurrency || 8) <= 4;
-    const activeCeiling = constrained ? 4 : 10;
-    const movement = movementConfiguration(logicalRows.length, reducedMotion);
-
-    const animate = (time: number) => {
-      if (document.visibilityState === "hidden") { frame = 0; return; }
-      const timeScale = Math.min((time - lastTime) / 16.667, 2.5);
-      lastTime = time;
-      const { offset, viewport, rowHeight } = virtualMetrics.current;
-      const active = activeTickerIndexes(windowRangeRef.current, offset, viewport, rowHeight, activeCeiling);
-      for (const logicalIndex of active) {
-        const track = rowTracks.current.get(logicalIndex);
-        const cycleWidth = cycleWidths.current.get(logicalIndex) ?? 0;
-        if (!track || !cycleWidth) continue;
-        let state = tickerState.current.get(logicalIndex);
-        if (!state) { state = { position: -cycleWidth * 2, target: -cycleWidth * 2, initialized: true }; tickerState.current.set(logicalIndex, state); }
-        const { direction, speed } = movement[logicalIndex];
-        const ambientStep = direction * speed * timeScale;
-        state.target += ambientStep;
-        state.position += ambientStep + (state.target - state.position) * 0.075;
-        Object.assign(state, wrapTickerPosition(state.position, state.target, cycleWidth));
-        track.style.transform = `translate3d(${state.position}px, 0, 0)`;
-      }
-      if (process.env.NODE_ENV !== "production") {
-        document.documentElement.dataset.numePerformance = JSON.stringify({ logicalRows: logicalRows.length, mountedRows: windowRangeRef.current.end - windowRangeRef.current.start, activeRows: active.length, schedulerCount: 1, window: [windowRangeRef.current.start, windowRangeRef.current.end] });
-      }
-      frame = requestAnimationFrame(animate);
-    };
-    const onVisibility = () => {
-      if (document.visibilityState === "hidden") { cancelAnimationFrame(frame); frame = 0; return; }
-      lastTime = performance.now();
-      if (!frame) frame = requestAnimationFrame(animate);
-    };
-    document.addEventListener("visibilitychange", onVisibility);
-    frame = requestAnimationFrame(animate);
-    return () => { document.removeEventListener("visibilitychange", onVisibility); cancelAnimationFrame(frame); };
-  }, [logicalRows.length]);
-
   function openWork(work: Product, rowIndex: number) {
     if (performance.now() < suppressOpenUntil.current) return;
     setSelected(work);
@@ -231,8 +152,8 @@ export default function Home() {
   }
 
   function nudgeRow(rowIndex: number, direction: -1 | 1) {
-    const state = tickerState.current.get(rowIndex);
-    if (state) state.target += direction * 230;
+    const row = rowParts.current.get(rowIndex)?.row;
+    if (row) engine.current?.nudge(row, direction);
   }
 
   function stopEdgeHold(event?: React.PointerEvent<HTMLButtonElement>) {
@@ -259,47 +180,21 @@ export default function Home() {
 
   function startDrag(event: React.PointerEvent<HTMLDivElement>, rowIndex: number) {
     if ((event.target as HTMLElement).closest(".row-controls")) return;
-    dragState.current = {
-      rowIndex,
-      pointerId: event.pointerId,
-      lastX: event.clientX,
-      distance: 0,
-      dragging: false,
-    };
+    const row = rowParts.current.get(rowIndex)?.row;
+    if (row) engine.current?.pointerDown(event.nativeEvent, row);
   }
 
-  function moveDrag(event: React.PointerEvent<HTMLDivElement>, rowIndex: number) {
-    const drag = dragState.current;
-    if (drag.rowIndex !== rowIndex || drag.pointerId !== event.pointerId) return;
-    const delta = event.clientX - drag.lastX;
-    drag.lastX = event.clientX;
-    drag.distance += Math.abs(delta);
-    if (!drag.dragging && drag.distance > 5) {
-      drag.dragging = true;
-      event.currentTarget.setPointerCapture(event.pointerId);
-      event.currentTarget.classList.add("is-dragging");
-    }
-    if (!drag.dragging) return;
-    const state = tickerState.current.get(rowIndex);
-    if (!state) return;
-    state.position += delta;
-    state.target = state.position;
+  function moveDrag(event: React.PointerEvent<HTMLDivElement>) {
+    engine.current?.pointerMove(event.nativeEvent);
   }
 
-  function endDrag(event: React.PointerEvent<HTMLDivElement>, rowIndex: number) {
-    const drag = dragState.current;
-    if (drag.rowIndex !== rowIndex || drag.pointerId !== event.pointerId) return;
-    if (drag.dragging) suppressOpenUntil.current = performance.now() + 180;
-    dragState.current = { rowIndex: -1, pointerId: -1, lastX: 0, distance: 0, dragging: false };
-    event.currentTarget.classList.remove("is-dragging");
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
+  function endDrag(event: React.PointerEvent<HTMLDivElement>) {
+    if (engine.current?.pointerUp(event.nativeEvent)) suppressOpenUntil.current = performance.now() + 180;
   }
 
   function focusLogicalRow(targetRow: number, itemIndex: number) {
-    if (targetRow < 0 || targetRow >= logicalRows.length) return;
-    window.scrollTo({ top: 122 + targetRow * virtualMetrics.current.rowHeight });
+    if (targetRow < 0 || targetRow >= marketplaceRows.length) return;
+    document.querySelector<HTMLElement>(`[data-logical-index="${targetRow}"]`)?.scrollIntoView({ block: "center" });
     requestAnimationFrame(() => requestAnimationFrame(() => {
       const row = document.querySelector<HTMLElement>(`[data-logical-index="${targetRow}"]`);
       row?.querySelectorAll<HTMLButtonElement>('.track-segment[aria-hidden="false"] .tile, .track-segment:not([aria-hidden]) .tile')[itemIndex]?.focus();
@@ -337,28 +232,24 @@ export default function Home() {
         aria-hidden={rotundaOpen}
         inert={rotundaOpen}
       >
-        <div className="virtual-spacer" style={{ height: windowRange.top }} aria-hidden="true" />
-        {logicalRows.slice(windowRange.start, windowRange.end).map((logicalRow, mountedIndex) => {
-          const rowIndex = windowRange.start + mountedIndex;
-          const sourceIndex = logicalRow.sourceIndex;
+        {marketplaceRows.map((logicalRow, rowIndex) => {
+          const sourceIndex = rowIndex;
           const row = rows[sourceIndex];
           return (
           <div
             className={`gallery-row row-${sourceIndex + 1} heading-${logicalRow.heading_placement} ${sourceIndex < selectedRow ? "row-before" : sourceIndex > selectedRow ? "row-after" : "row-selected"}`}
-            key={logicalRow.logicalKey}
+            key={logicalRow.row_id}
             data-nume-row={logicalRow.row_id}
             data-nume-vendor={logicalRow.merchant_id}
             data-nume-entrepreneur={logicalRow.entrepreneur_group_id ?? undefined}
             data-nume-style={logicalRow.style_profile_id}
             data-logical-index={rowIndex}
             style={styleVariables(logicalRow.tokens)}
-            onPointerEnter={() => setHoveredRow(rowIndex)}
-            onPointerLeave={() => setHoveredRow((current) => current === rowIndex ? null : current)}
-            onFocusCapture={() => setHoveredRow(rowIndex)}
+            ref={(element) => bindPart(rowIndex, "row", element)}
             onPointerDown={(event) => startDrag(event, rowIndex)}
-            onPointerMove={(event) => moveDrag(event, rowIndex)}
-            onPointerUp={(event) => endDrag(event, rowIndex)}
-            onPointerCancel={(event) => endDrag(event, rowIndex)}
+            onPointerMove={moveDrag}
+            onPointerUp={endDrag}
+            onPointerCancel={endDrag}
           >
             <div className="row-heading-area">
               {logicalRow.merchant_id === "merchant_qa" && (
@@ -376,19 +267,14 @@ export default function Home() {
             </div>
             <div
               className="track"
-              ref={(element) => { if (element) rowTracks.current.set(rowIndex, element); else rowTracks.current.delete(rowIndex); }}
+              ref={(element) => bindPart(rowIndex, "track", element)}
             >
               {Array.from({ length: ROW_COPIES }, (_, copyIndex) => (
                 <div
                   className="track-segment"
                   key={copyIndex}
-                  ref={copyIndex === 0 ? (element) => {
-                    if (element) {
-                      rowSegments.current.set(rowIndex, element);
-                      queueMicrotask(() => cycleWidths.current.set(rowIndex, element.getBoundingClientRect().width + 14));
-                    } else { rowSegments.current.delete(rowIndex); cycleWidths.current.delete(rowIndex); }
-                  } : undefined}
-                  aria-hidden={copyIndex === 2 ? undefined : true}
+                  ref={copyIndex === 0 ? (element) => bindPart(rowIndex, "segment", element) : undefined}
+                  aria-hidden={copyIndex === 0 ? undefined : true}
                 >
                   {row.map((work, itemIndex) => (
                     <button
@@ -401,11 +287,11 @@ export default function Home() {
                         focusLogicalRow(rowIndex + (event.key === "ArrowUp" ? -1 : 1), itemIndex);
                       }}
                       aria-label={`Open ${work.title}${isPurchasable(work) ? "" : ` — ${work.variants[0].availability.status.replace("_", " ")}`}`}
-                      tabIndex={copyIndex === 2 ? 0 : -1}
+                      tabIndex={copyIndex === 0 ? 0 : -1}
                       draggable={false}
                       data-product-id={work.product_id}
                     >
-                      <ProductImage product={work} alt={copyIndex === 2 ? work.media[0].alt : ""} loading={rowIndex > 1 ? "lazy" : "eager"} vendor={logicalRow.merchant_id} tokens={logicalRow.tokens} />
+                      <ProductImage product={work} alt={copyIndex === 0 ? work.media[0].alt : ""} loading={rowIndex === 0 && copyIndex === 0 && itemIndex < 3 ? "eager" : "lazy"} vendor={logicalRow.merchant_id} tokens={logicalRow.tokens} />
                       <span className="tile-meta"><b>{work.title}</b><em>{formatPrice(work.variants[0].retail_price.amount_minor, work.variants[0].retail_price.currency)}</em></span>
                     </button>
                   ))}
@@ -444,7 +330,6 @@ export default function Home() {
             </button>
           </div>
         );})}
-        <div className="virtual-spacer" style={{ height: windowRange.bottom }} aria-hidden="true" />
       </section>
 
       {selected && stage > 0 && (

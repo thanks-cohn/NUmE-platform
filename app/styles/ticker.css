@@ -1,0 +1,2 @@
+.track{display:flex;width:max-content;height:100%;transform:translate3d(0,0,0);will-change:transform;cursor:grab}.track-segment{display:flex;flex:none;align-items:stretch;gap:var(--product-gap);padding-right:var(--product-gap)}.track-segment:first-child{padding-left:var(--gallery-gutter)}
+.gallery-row.is-dragging .track{cursor:grabbing}.gallery-row.is-dragging{user-select:none}
